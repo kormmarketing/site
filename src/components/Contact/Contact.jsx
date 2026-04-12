@@ -47,10 +47,44 @@ export default function Contact() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setBusy(true)
-    setTimeout(() => { setBusy(false); setSent(true) }, 800)
+
+    const TOKEN   = '8785875286:AAFx1vAFRe2rGt4HEcb6fQlhQlVESrVZT7Q'
+    const CHAT_ID = '413912803'
+
+    const taskLabel = {
+      site: 'Сайт', ads: 'Реклама', auto: 'Автоматизация',
+      ai: 'ИИ-интеграция', other: 'Другое',
+    }
+    const budgetLabel = {
+      '15k': 'до 15 000 ₽', '50k': '15 000 – 50 000 ₽',
+      '150k': '50 000 – 150 000 ₽', '150k+': 'от 150 000 ₽',
+    }
+
+    const text = [
+      '🔔 *Новая заявка с сайта КОРМ*',
+      '',
+      `👤 *Имя:* ${form.name}`,
+      `📱 *Контакт:* ${form.contact}`,
+      `🎯 *Задача:* ${taskLabel[form.task] || '—'}`,
+      `💰 *Бюджет:* ${budgetLabel[form.budget] || '—'}`,
+      `💬 *Сообщение:* ${form.message || '—'}`,
+    ].join('\n')
+
+    try {
+      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' }),
+      })
+    } catch (err) {
+      console.error('Telegram error:', err)
+    }
+
+    setBusy(false)
+    setSent(true)
   }
 
   return (
@@ -96,7 +130,7 @@ export default function Contact() {
             color: '#A0A0A0',
             margin: 0,
           }}>
-            Расскажи о задаче — отвечу в течение часа
+            Расскажи о задаче — отвечу сегодня
           </p>
         </div>
 
@@ -124,7 +158,7 @@ export default function Contact() {
                 fontSize: '18px',
                 color: '#FFFFFF',
               }}>
-                Увидел. Отвечу в течение часа.
+                Увидел. Отвечу в ближайшее время.
               </p>
             </motion.div>
           ) : (
@@ -230,6 +264,17 @@ export default function Contact() {
               >
                 {busy ? 'Отправляю...' : 'Отправить заявку →'}
               </motion.button>
+
+              <p style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '12px', color: '#4A4A4A',
+                textAlign: 'center', marginTop: '12px',
+              }}>
+                Нажимая кнопку, вы соглашаетесь с{' '}
+                <a href="/privacy" style={{ color: '#6366F1', textDecoration: 'none' }}>
+                  политикой конфиденциальности
+                </a>
+              </p>
             </motion.form>
           )}
         </AnimatePresence>
@@ -243,7 +288,7 @@ export default function Contact() {
           flexWrap: 'wrap',
         }}>
           {[
-            { label: 'Telegram', href: 'https://t.me/' },
+            { label: 'Telegram', href: 'https://t.me/korm_marketing' },
             { label: 'Серпухов · МО', href: null },
           ].map(({ label, href }) =>
             href ? (

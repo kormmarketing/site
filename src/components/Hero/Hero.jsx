@@ -141,7 +141,7 @@ function ParticleGrid() {
 // Hero content
 // ─────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: '27', label: 'проектов в портфолио' },
+  { value: '9', label: 'проектов в портфолио' },
   { value: '3+', label: 'года в digital' },
   { value: 'МО', label: 'Серпухов и область' },
 ]
@@ -250,8 +250,7 @@ export default function Hero() {
 
       {/* ── Content ─────────────────────────────────────────────── */}
       <div
-        className="max-w-7xl mx-auto px-6 w-full hero-content"
-        style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(16px, 4vw, 64px)' }}
+        style={{ position: 'relative', zIndex: 1, paddingTop: 'clamp(16px, 4vw, 64px)', width: '100%', paddingLeft: '6%', paddingRight: '6%' }}
       >
 
         {/* Typewriter tag */}
@@ -286,7 +285,7 @@ export default function Hero() {
               <p
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: 'clamp(44px, 6.5vw, 88px)',
+                  fontSize: 'clamp(36px, 6.5vw, 160px)',
                   fontWeight: 700,
                   color: '#FFFFFF',
                   lineHeight: 1.05,
@@ -305,7 +304,7 @@ export default function Hero() {
               <p
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: 'clamp(44px, 6.5vw, 88px)',
+                  fontSize: 'clamp(36px, 6.5vw, 160px)',
                   fontWeight: 700,
                   color: '#FFFFFF',
                   lineHeight: 1.05,
@@ -323,7 +322,7 @@ export default function Hero() {
             <div ref={wrap3} style={{ opacity: 0 }}>
               <p style={{
                 fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: 'clamp(44px, 6.5vw, 88px)',
+                fontSize: 'clamp(36px, 6.5vw, 160px)',
                 fontWeight: 700,
                 color: '#FFFFFF',
                 lineHeight: 1.05,
@@ -353,7 +352,7 @@ export default function Hero() {
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
                   display: 'block',
-                  width: 'clamp(200px, 32vw, 500px)',
+                  width: 'clamp(200px, 32vw, 800px)',
                   height: '8px',
                   marginTop: '2px',
                 }}
@@ -481,7 +480,7 @@ export default function Hero() {
 
           {/* Telegram */}
           <a
-            href="https://t.me/"
+            href="https://t.me/korm_marketing"
             target="_blank"
             rel="noopener noreferrer"
             style={{

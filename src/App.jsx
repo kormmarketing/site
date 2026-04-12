@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Privacy from './components/Privacy/Privacy'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -22,6 +23,8 @@ import Footer   from './components/Footer/Footer'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
+  if (window.location.pathname === '/privacy') return <Privacy />
+
   const [loading, setLoading] = useState(true)
 
   useLenis()

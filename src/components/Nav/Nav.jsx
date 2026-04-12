@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: 'Услуги',   href: '#услуги'    },
   { label: 'Работы',   href: '#портфолио' },
   { label: 'Процесс',  href: '#процесс'   },
-  { label: 'О нас',    href: '#процесс'       },
+  { label: 'О нас',    href: '#обо мне'       },
   { label: 'Автоматизация', href: '#автоматизация' },
   { label: 'Контакт',  href: '#контакт'       },
 ]
@@ -156,8 +156,8 @@ export default function Nav() {
         }}
       >
         <div style={{
-          maxWidth: '1280px', margin: '0 auto',
-          padding: '0 48px', height: '72px',
+          width: '100%',
+          padding: '0 6%', height: '72px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }} className="nav-inner">
 
@@ -190,7 +190,7 @@ export default function Nav() {
               fontSize: '10px', color: '#6366F1',
               letterSpacing: '0.1em', lineHeight: 1,
             }}>
-              digital.agency
+              маркетинг
             </span>
           </a>
 
@@ -309,7 +309,7 @@ export default function Nav() {
           }}
         >
           <a
-            href="https://t.me/"
+            href="https://t.me/korm_marketing"
             target="_blank" rel="noopener noreferrer"
             style={{
               fontFamily: "'JetBrains Mono', monospace",

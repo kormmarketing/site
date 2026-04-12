@@ -62,7 +62,7 @@ export default function About() {
       style={{ background: '#050505', padding: '120px 0', position: 'relative', zIndex: 1 }}
     >
       <div style={{
-        maxWidth: '1200px', margin: '0 auto', padding: '0 24px',
+        width: '100%', padding: '0 6%',
         display: 'grid',
         gridTemplateColumns: '45fr 55fr',
         gap: '64px',

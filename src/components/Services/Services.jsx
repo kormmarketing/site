@@ -802,7 +802,7 @@ export default function Services() {
 
   return (
     <section id="услуги" style={{ background: '#050505', padding: '120px 0', position: 'relative', zIndex: 1 }}>
-      <div className="max-w-7xl mx-auto px-6">
+      <div style={{ width: "100%", paddingLeft: "6%", paddingRight: "6%" }}>
 
         <div ref={headerRef} style={{ marginBottom: '72px' }}>
           <p ref={labelRef} style={{

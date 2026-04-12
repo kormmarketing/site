@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useInView } from 'react-intersection-observer'
 import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
@@ -340,7 +341,7 @@ function AutoModal({ onClose }) {
     }
   }, [])
 
-  return (
+  return createPortal(
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -370,6 +371,7 @@ function AutoModal({ onClose }) {
           border: '1px solid #1E1E1E',
           borderRadius: '24px', overflow: 'hidden',
           position: 'relative',
+          flexShrink: 0,
           boxShadow: '0 0 120px rgba(6,182,212,0.1)',
         }}
       >
@@ -565,7 +567,7 @@ function AutoModal({ onClose }) {
             </p>
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
               className="auto-cta-btns">
-              <a href="https://t.me/" target="_blank" rel="noopener noreferrer"
+              <a href="https://t.me/korm_marketing" target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center',
                   background: 'linear-gradient(135deg, #06B6D4, #6366F1)',
@@ -592,7 +594,8 @@ function AutoModal({ onClose }) {
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   )
 }
 
@@ -661,7 +664,7 @@ export default function Automation() {
         bottom: '100px', right: '-100px', pointerEvents: 'none',
       }} />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 24px 120px' }}>
+      <div style={{ width: '100%', padding: '120px 6%' }}>
 
         {/* Header */}
         <div ref={headerRef} style={{ textAlign: 'center' }}>

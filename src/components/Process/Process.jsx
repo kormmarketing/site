@@ -76,7 +76,7 @@ export default function Process() {
       id="процесс"
       style={{ background: '#0F0F0F', padding: '120px 0', position: 'relative', zIndex: 1 }}
     >
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
+      <div style={{ width: '100%', padding: '0 6%' }}>
 
         {/* ── Header ─────────────────────────────────────────── */}
         <div ref={headerRef} style={{ textAlign: 'center', marginBottom: '80px' }}>

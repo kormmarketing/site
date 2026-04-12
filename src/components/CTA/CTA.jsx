@@ -59,7 +59,7 @@ export default function CTA() {
         >
           {/* Telegram */}
           <a
-            href="https://t.me/"
+            href="https://t.me/korm_marketing"
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="button"

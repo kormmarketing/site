@@ -178,12 +178,18 @@ export default function Footer() {
           }}>
             © {year} Корм Маркетинг
           </span>
-          <span style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '12px', color: '#A0A0A0',
-          }}>
-            Серпухов · МО
-          </span>
+          <a
+            href="/privacy"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '12px', color: '#A0A0A0',
+              textDecoration: 'none', transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => e.target.style.color = '#6366F1'}
+            onMouseLeave={e => e.target.style.color = '#A0A0A0'}
+          >
+            Политика конфиденциальности
+          </a>
         </div>
       </div>
 

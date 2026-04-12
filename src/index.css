@@ -183,6 +183,11 @@ section {
   padding-right: 24px;
 }
 
+/* Wide container — scales up on large monitors */
+.max-w-7xl {
+  max-width: 1600px !important;
+}
+
 @media (max-width: 768px) {
   .px-6,
   .hero-content {
