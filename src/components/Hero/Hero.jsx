@@ -141,7 +141,7 @@ function ParticleGrid() {
 // Hero content
 // ─────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: '9', label: 'проектов в портфолио' },
+  { value: '27', label: 'проектов в портфолио' },
   { value: '3+', label: 'года в digital' },
   { value: 'МО', label: 'Серпухов и область' },
 ]
