@@ -1,6 +1,7 @@
 export default function Privacy() {
   return (
     <div style={{ background: '#050505', minHeight: '100vh', color: '#FFFFFF' }}>
+      <style>{`* { cursor: auto !important; } a { cursor: pointer !important; }`}</style>
 
       {/* Nav */}
       <div style={{
@@ -52,7 +53,7 @@ export default function Privacy() {
           Политика конфиденциальности
         </h1>
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', color: '#A0A0A0', marginBottom: '56px' }}>
-          Последнее обновление: апрель 2025
+          Последнее обновление: апрель 2026
         </p>
 
         {[
