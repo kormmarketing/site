@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRUTAL CUT — Мужской барбершоп в Серпухове</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --off-black: #111111;
+  --dark: #1A1A1A;
+  --white: #FFFFFF;
+  --cream: #F5F0E8;
+  --gold: #C9A84C;
+  --steel: #8A8A8A;
+  --line: #2A2A2A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.reveal.visible { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   01 — НАВИГАЦИЯ
+══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--black);
+  border-bottom: 1px solid var(--line);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-menu a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--steel);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-menu a:hover { color: var(--white); }
+
+.nav-cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  background: transparent;
+  padding: 10px 24px;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--black); }
+
+/* ══════════════════════════════════════════
+   02 — HERO
+══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Декоративные вертикальные линии */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
+.hero::before { left: 15%; }
+.hero::after  { right: 15%; }
+
+/* Огромная декоративная цифра */
+.hero-bg-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 400px;
+  color: var(--white);
+  opacity: 0.03;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.hero-inner {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+}
+
+/* Левая колонка */
+.hero-left {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 80px;
+}
+
+.hero-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0s;
+}
+
+.hero-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+
+.hero-h1 .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-h1 .line span {
+  display: block;
+  opacity: 0;
+  transform: translateY(60px);
+  animation: slideUp 0.6s ease forwards;
+}
+.hero-h1 .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-h1 .line:nth-child(2) span { animation-delay: 0.25s; }
+.hero-h1 .line:nth-child(3) span { animation-delay: 0.4s; }
+.hero-h1 .line:nth-child(4) span { animation-delay: 0.55s; }
+
+/* Последнее слово — только обводка */
+.hero-h1 .outline {
+  -webkit-text-stroke: 1px var(--white);
+  color: transparent;
+}
+
+.hero-gold-line {
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 32px;
+  animation: expandLine 0.6s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes expandLine {
+  to { width: 60px; }
+}
+
+.hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--steel);
+  max-width: 380px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.8s;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.btn-primary {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  border-radius: 0;
+  padding: 16px 40px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.hero-phone {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+}
+
+/* Правая колонка */
+.hero-right {
+  flex: 0 0 40%;
+  position: relative;
+  opacity: 0;
+  animation: fadeScale 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.hero-right-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #2A2218 0%, #1A1510 50%, #2E251A 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ромбовидная сетка (CSS pattern) */
+.hero-right-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(201,168,76,0.08) 0, rgba(201,168,76,0.08) 1px, transparent 0, transparent 50%),
+    repeating-linear-gradient(-45deg, rgba(201,168,76,0.08) 0, rgba(201,168,76,0.08) 1px, transparent 0, transparent 50%);
+  background-size: 28px 28px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* SVG ножницы */
+.scissors-svg {
+  width: 120px;
+  height: 120px;
+  opacity: 0.9;
+}
+
+.hero-since {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gold);
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════
+   03 — БЕГУЩАЯ СТРОКА
+══════════════════════════════════════════ */
+.marquee-wrap {
+  background: var(--gold);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 14px 0;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+.marquee-track span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.3em;
+  color: var(--black);
+  padding-right: 0;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ══════════════════════════════════════════
+   04 — УСЛУГИ
+══════════════════════════════════════════ */
+.services {
+  background: var(--off-black);
+  padding: 120px 80px;
+}
+
+.section-header {
+  margin-bottom: 72px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--gold);
+  margin-top: 8px;
+}
+
+.accordion-list {
+  border-top: 1px solid var(--line);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.accordion-header:hover .acc-name { color: var(--gold); }
+.accordion-header:hover .acc-plus { color: var(--gold); }
+
+.acc-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--steel);
+  letter-spacing: 0.1em;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.acc-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  flex: 1;
+  margin-left: 24px;
+  transition: color 0.2s;
+}
+
+.acc-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  margin-right: 48px;
+  white-space: nowrap;
+}
+
+.acc-plus {
+  font-size: 22px;
+  color: var(--steel);
+  transition: transform 0.3s ease, color 0.2s;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  line-height: 1;
+}
+
+.accordion-item.open .acc-plus {
+  transform: rotate(45deg);
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-item.open .accordion-body {
+  max-height: 200px;
+}
+
+.accordion-body-inner {
+  padding: 0 0 32px 64px;
+}
+
+.acc-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--steel);
+  margin-bottom: 8px;
+}
+
+.acc-time {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  margin-bottom: 16px;
+}
+
+.acc-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   05 — МАСТЕРА
+══════════════════════════════════════════ */
+.masters {
+  background: var(--black);
+  padding: 120px 80px;
+}
+
+.masters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.master-card {
+  background: var(--off-black);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.master-card:hover { border-color: var(--gold); }
+
+.master-photo {
+  height: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.master-photo-1 { background: linear-gradient(160deg, #1E1A14, #2A2318); }
+.master-photo-2 { background: linear-gradient(160deg, #141418, #1E1E28); }
+.master-photo-3 { background: linear-gradient(160deg, #141A14, #1A2418); }
+
+.master-initials {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 96px;
+  color: var(--white);
+  opacity: 0.15;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+.master-info {
+  padding: 32px;
+}
+
+.master-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: var(--white);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.master-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.master-exp,
+.master-spec {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════
+   06 — ОНЛАЙН ЗАПИСЬ
+══════════════════════════════════════════ */
+.booking {
+  background: var(--dark);
+  padding: 120px 80px;
+}
+
+.booking-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.booking-left {}
+
+.booking-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.booking-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+
+.booking-points {
+  list-style: none;
+  margin-bottom: 48px;
+}
+
+.booking-points li {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--steel);
+  padding: 8px 0;
+  display: flex;
+  gap: 16px;
+}
+
+.booking-points li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.booking-phone-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  margin-bottom: 6px;
+}
+
+.booking-phone {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+/* Форма */
+.booking-form {
+  position: relative;
+}
+
+.form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-inner input,
+.form-inner select {
+  background: var(--off-black);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 16px 20px;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-inner input:focus,
+.form-inner select:focus {
+  border-color: var(--gold);
+}
+
+.form-inner select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  cursor: pointer;
+}
+
+.form-inner select option {
+  background: var(--off-black);
+  color: var(--white);
+}
+
+.form-inner input::placeholder { color: var(--steel); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.btn-submit {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  border-radius: 0;
+  padding: 18px;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:hover { opacity: 0.85; }
+
+/* Подтверждение */
+.booking-confirm {
+  display: none;
+  text-align: center;
+  padding: 60px 40px;
+  border: 1px solid var(--line);
+}
+
+.confirm-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.confirm-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--white);
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.confirm-details {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--steel);
+  line-height: 2;
+  margin-bottom: 24px;
+}
+
+.confirm-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+/* ══════════════════════════════════════════
+   07 — АТМОСФЕРА
+══════════════════════════════════════════ */
+.atmosphere {
+  background: var(--black);
+  padding: 120px 0 0;
+}
+
+.atmosphere-header {
+  text-align: center;
+  padding: 0 80px 72px;
+}
+
+.atmosphere-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.atmosphere-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.atmosphere-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.atm-cell {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.atm-cell-1 { background: linear-gradient(160deg, #1A1510, #2A2018); }
+.atm-cell-2 { background: linear-gradient(160deg, #0E0E14, #1A1A24); }
+.atm-cell-3 { background: linear-gradient(160deg, #0E1410, #141E14); }
+
+.atm-word {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--white);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+}
+
+.atm-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  text-align: center;
+  max-width: 220px;
+  opacity: 0;
+  position: absolute;
+  bottom: 40px;
+  transition: opacity 0.3s;
+  line-height: 1.7;
+}
+
+.atm-cell:hover .atm-word { opacity: 1; }
+.atm-cell:hover .atm-desc { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   08 — ОТЗЫВЫ
+══════════════════════════════════════════ */
+.reviews {
+  background: var(--off-black);
+  padding: 120px 80px;
+}
+
+.reviews-track-wrap {
+  margin-top: 64px;
+  overflow-x: auto;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.reviews-track-wrap::-webkit-scrollbar { display: none; }
+.reviews-track-wrap.grabbing { cursor: grabbing; }
+
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 8px;
+  width: max-content;
+}
+
+.review-card {
+  background: var(--black);
+  border-left: 3px solid var(--gold);
+  padding: 40px;
+  min-width: 380px;
+  flex-shrink: 0;
+  border-radius: 0;
+}
+
+.review-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--white);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+
+.review-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.review-service {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ══════════════════════════════════════════
+   09 — ФУТЕР
+══════════════════════════════════════════ */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--line);
+  padding: 80px 80px 0;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 64px;
+  padding-bottom: 64px;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.footer-slogan {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.footer-city {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+}
+
+.footer-col-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  padding: 4px 0;
+}
+
+.footer-address {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--steel);
+  line-height: 2;
+}
+
+.footer-social {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--steel);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid #1A1A1A;
+  padding: 20px 0;
+}
+
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--steel);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE (basic)
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 0 24px; }
+  .nav-menu { display: none; }
+
+  .hero-inner { flex-direction: column; }
+  .hero-left { flex: none; padding: 60px 24px; }
+  .hero-right { flex: none; height: 400px; position: relative; }
+  .hero-right-inner { position: relative; height: 400px; }
+  .hero-h1 { font-size: 80px; }
+
+  .services,
+  .masters,
+  .booking,
+  .atmosphere-header,
+  .reviews { padding-left: 24px; padding-right: 24px; }
+
+  .masters-grid { grid-template-columns: 1fr; gap: 16px; }
+  .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+  .atmosphere-grid { grid-template-columns: 1fr; }
+  .atm-cell { height: 260px; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  footer { padding: 60px 24px 0; }
+
+  .atmosphere-title { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     01 — НАВИГАЦИЯ
+══════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">BRUTAL CUT</a>
+  <ul class="nav-menu">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#masters">Мастера</a></li>
+    <li><a href="#services">Цены</a></li>
+    <li><a href="#booking">Записаться</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Записаться</a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     02 — HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg-text">1917</div>
+
+  <div class="hero-inner">
+
+    <!-- Левая колонка -->
+    <div class="hero-left">
+      <p class="hero-tag">— Серпухов · Мужские стрижки</p>
+
+      <h1 class="hero-h1">
+        <span class="line"><span>СТРИЖКА</span></span>
+        <span class="line"><span>БОРОДА</span></span>
+        <span class="line"><span>БРИТЬЁ</span></span>
+        <span class="line"><span class="outline">СЕРПУХОВ</span></span>
+      </h1>
+
+      <div class="hero-gold-line"></div>
+
+      <p class="hero-sub">
+        Мужской барбершоп в Серпухове. Классические стрижки, бритьё опасной бритвой, уход за бородой.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Записаться онлайн</a>
+        <span class="hero-phone">или позвони +7 (4967) 00-00-00</span>
+      </div>
+    </div>
+
+    <!-- Правая колонка -->
+    <div class="hero-right">
+      <div class="hero-right-inner">
+
+        <!-- SVG ножницы — минималистичные, одна линия -->
+        <svg class="scissors-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Левое лезвие -->
+          <line x1="60" y1="60" x2="10" y2="10" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="60" y1="60" x2="10" y2="30" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Правое лезвие -->
+          <line x1="60" y1="60" x2="110" y2="10" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="60" y1="60" x2="110" y2="30" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Ручки -->
+          <circle cx="22" cy="88" r="12" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+          <circle cx="98" cy="88" r="12" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+          <!-- Стержни ручек -->
+          <line x1="60" y1="60" x2="28" y2="82" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="60" y1="60" x2="92" y2="82" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Шарнир -->
+          <circle cx="60" cy="60" r="3" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+        </svg>
+
+        <span class="hero-since">Since 2018</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     03 — БЕГУЩАЯ СТРОКА
+══════════════════════════════════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>МУЖСКАЯ СТРИЖКА &nbsp;·&nbsp; БОРОДА &nbsp;·&nbsp; БРИТЬЁ &nbsp;·&nbsp; КАМУФЛЯЖ СЕДИНЫ &nbsp;·&nbsp; УКЛАДКА &nbsp;·&nbsp; КОРОЛЕВСКОЕ БРИТЬЁ &nbsp;·&nbsp; МУЖСКАЯ СТРИЖКА &nbsp;·&nbsp; БОРОДА &nbsp;·&nbsp; БРИТЬЁ &nbsp;·&nbsp; КАМУФЛЯЖ СЕДИНЫ &nbsp;·&nbsp; УКЛАДКА &nbsp;·&nbsp; КОРОЛЕВСКОЕ БРИТЬЁ &nbsp;·&nbsp;</span>
+    <span>МУЖСКАЯ СТРИЖКА &nbsp;·&nbsp; БОРОДА &nbsp;·&nbsp; БРИТЬЁ &nbsp;·&nbsp; КАМУФЛЯЖ СЕДИНЫ &nbsp;·&nbsp; УКЛАДКА &nbsp;·&nbsp; КОРОЛЕВСКОЕ БРИТЬЁ &nbsp;·&nbsp; МУЖСКАЯ СТРИЖКА &nbsp;·&nbsp; БОРОДА &nbsp;·&nbsp; БРИТЬЁ &nbsp;·&nbsp; КАМУФЛЯЖ СЕДИНЫ &nbsp;·&nbsp; УКЛАДКА &nbsp;·&nbsp; КОРОЛЕВСКОЕ БРИТЬЁ &nbsp;·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     04 — УСЛУГИ
+══════════════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <h2 class="section-title">НАШИ УСЛУГИ</h2>
+    <p class="section-subtitle">для настоящих мужчин</p>
+  </div>
+
+  <div class="accordion-list">
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">01</span>
+        <span class="acc-name">КЛАССИЧЕСКАЯ СТРИЖКА</span>
+        <span class="acc-price">от 800 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">Машинка + ножницы, оформление контура. Чистая работа, никаких компромиссов.</p>
+          <p class="acc-time">Время: ~45 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">02</span>
+        <span class="acc-name">СТРИЖКА + БОРОДА</span>
+        <span class="acc-price">от 1 400 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">Комплексный уход, горячее полотенце. Выходишь другим человеком.</p>
+          <p class="acc-time">Время: ~75 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">03</span>
+        <span class="acc-name">КОРОЛЕВСКОЕ БРИТЬЁ</span>
+        <span class="acc-price">от 1 200 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">Опасная бритва, горячие полотенца, масла. Ритуал, а не процедура.</p>
+          <p class="acc-time">Время: ~60 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">04</span>
+        <span class="acc-name">ОФОРМЛЕНИЕ БОРОДЫ</span>
+        <span class="acc-price">от 600 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">Моделирование, стрижка, уход. Борода выглядит так, как должна.</p>
+          <p class="acc-time">Время: ~30 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">05</span>
+        <span class="acc-name">КАМУФЛЯЖ СЕДИНЫ</span>
+        <span class="acc-price">от 1 800 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">Натуральные тона, без резких переходов. Жена не сразу заметит.</p>
+          <p class="acc-time">Время: ~90 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="acc-num">06</span>
+        <span class="acc-name">ДЕТСКАЯ СТРИЖКА</span>
+        <span class="acc-price">от 600 ₽</span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <p class="acc-desc">До 12 лет. Терпеливые мастера — сидит спокойно.</p>
+          <p class="acc-time">Время: ~30 минут</p>
+          <div class="acc-line"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     05 — МАСТЕРА
+══════════════════════════════════════════ -->
+<section class="masters" id="masters">
+  <div class="section-header reveal">
+    <h2 class="section-title">МАСТЕРА</h2>
+    <p class="section-subtitle">люди которые знают своё дело</p>
+  </div>
+
+  <div class="masters-grid">
+
+    <div class="master-card reveal">
+      <div class="master-photo master-photo-1">
+        <span class="master-initials">АК</span>
+      </div>
+      <div class="master-info">
+        <div class="master-name">АРТЁМ КРАСНОВ</div>
+        <div class="master-role">Старший барбер</div>
+        <div class="master-exp">8 лет опыта</div>
+        <div class="master-spec">Классика, помпадур, скинфейд</div>
+      </div>
+    </div>
+
+    <div class="master-card reveal">
+      <div class="master-photo master-photo-2">
+        <span class="master-initials">МВ</span>
+      </div>
+      <div class="master-info">
+        <div class="master-name">МАКСИМ ВОЛКОВ</div>
+        <div class="master-role">Барбер</div>
+        <div class="master-exp">5 лет опыта</div>
+        <div class="master-spec">Борода, этнические стрижки</div>
+      </div>
+    </div>
+
+    <div class="master-card reveal">
+      <div class="master-photo master-photo-3">
+        <span class="master-initials">ДС</span>
+      </div>
+      <div class="master-info">
+        <div class="master-name">ДЕНИС СМИРНОВ</div>
+        <div class="master-role">Барбер</div>
+        <div class="master-exp">4 года опыта</div>
+        <div class="master-spec">Современные стрижки, молодёжные стили</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     06 — ОНЛАЙН ЗАПИСЬ
+══════════════════════════════════════════ -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+
+    <div class="booking-left reveal">
+      <h2 class="booking-title">ЗАПИШИСЬ ОНЛАЙН</h2>
+      <p class="booking-subtitle">не трать время на звонки</p>
+
+      <ul class="booking-points">
+        <li>Выбери мастера и время</li>
+        <li>Получи подтверждение за 2 минуты</li>
+        <li>Напомним за час до записи</li>
+      </ul>
+
+      <p class="booking-phone-label">или позвони напрямую</p>
+      <div class="booking-phone">+7 (4967) 00-00-00</div>
+      <p class="booking-phone-label" style="margin-top:6px;">или запишись ниже</p>
+    </div>
+
+    <div class="booking-form reveal">
+
+      <!-- Форма -->
+      <div class="form-inner" id="bookingForm">
+        <input type="text" id="fname" placeholder="Ваше имя" autocomplete="off">
+        <input type="tel" id="fphone" placeholder="+7 (___) ___-__-__" maxlength="18">
+
+        <select id="fmaster">
+          <option value="" disabled selected>Выберите мастера</option>
+          <option value="artem">Артём Краснов</option>
+          <option value="maxim">Максим Волков</option>
+          <option value="denis">Денис Смирнов</option>
+          <option value="any">Любой свободный</option>
+        </select>
+
+        <select id="fservice">
+          <option value="" disabled selected>Выберите услугу</option>
+          <option value="haircut">Классическая стрижка — от 800 ₽</option>
+          <option value="haircut-beard">Стрижка + борода — от 1 400 ₽</option>
+          <option value="shave">Королевское бритьё — от 1 200 ₽</option>
+          <option value="beard">Оформление бороды — от 600 ₽</option>
+          <option value="grey">Камуфляж седины — от 1 800 ₽</option>
+          <option value="kids">Детская стрижка — от 600 ₽</option>
+        </select>
+
+        <div class="form-row">
+          <input type="date" id="fdate">
+          <select id="ftime">
+            <option value="" disabled selected>Время</option>
+            <option>10:00</option>
+            <option>11:00</option>
+            <option>12:00</option>
+            <option>13:00</option>
+            <option>14:00</option>
+            <option>15:00</option>
+            <option>16:00</option>
+            <option>17:00</option>
+            <option>18:00</option>
+            <option>19:00</option>
+          </select>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">ЗАПИСАТЬСЯ</button>
+      </div>
+
+      <!-- Подтверждение -->
+      <div class="booking-confirm" id="bookingConfirm">
+        <div class="confirm-label">Запись подтверждена</div>
+        <div class="confirm-title" id="confirmTitle">АРТЁМ · ПЯТНИЦА · 15:00</div>
+        <div class="confirm-details">
+          Ждём тебя. Не опаздывай.
+        </div>
+        <div class="confirm-brand">BRUTAL CUT</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     07 — АТМОСФЕРА
+══════════════════════════════════════════ -->
+<section class="atmosphere">
+  <div class="atmosphere-header reveal">
+    <h2 class="atmosphere-title">МЫ — ЭТО НЕ ПРОСТО СТРИЖКА</h2>
+    <p class="atmosphere-sub">Это ритуал. Традиция. Место где можно выдохнуть.</p>
+  </div>
+
+  <div class="atmosphere-grid">
+    <div class="atm-cell atm-cell-1">
+      <span class="atm-word">КЛАССИКА</span>
+      <p class="atm-desc">Проверенные техники, отточенные годами. Ничего лишнего — только мастерство.</p>
+    </div>
+    <div class="atm-cell atm-cell-2">
+      <span class="atm-word">ТРАДИЦИИ</span>
+      <p class="atm-desc">Барберинг — это не тренд. Это ремесло, которому больше ста лет.</p>
+    </div>
+    <div class="atm-cell atm-cell-3">
+      <span class="atm-word">МАСТЕРСТВО</span>
+      <p class="atm-desc">Каждый мастер прошёл путь. Знает руки, знает инструмент, знает тебя.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     08 — ОТЗЫВЫ
+══════════════════════════════════════════ -->
+<section class="reviews">
+  <div class="section-header reveal">
+    <h2 class="section-title">ГОВОРЯТ КЛИЕНТЫ</h2>
+  </div>
+
+  <div class="reviews-track-wrap" id="reviewsTrack">
+    <div class="reviews-track">
+
+      <div class="review-card">
+        <p class="review-text">"Хожу только к Артёму уже два года. Классический помпадур — делает идеально. Атмосфера в зале как будто попал в другое время."</p>
+        <div class="review-name">АЛЕКСАНДР</div>
+        <div class="review-service">Стрижка + укладка</div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Королевское бритьё — это отдельный опыт. Горячие полотенца, масло, опасная бритва. Выходишь другим человеком."</p>
+        <div class="review-name">ИГОРЬ</div>
+        <div class="review-service">Королевское бритьё</div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Камуфляж седины — сделали так натурально что жена не сразу заметила. Профессионалы."</p>
+        <div class="review-name">РОМАН</div>
+        <div class="review-service">Камуфляж седины</div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Привожу сюда сына с 7 лет. Денис находит подход к детям, сидит спокойно. Сам тоже стригусь только здесь."</p>
+        <div class="review-name">АНТОН</div>
+        <div class="review-service">Детская + мужская</div>
+      </div>
+
+      <div class="review-card">
+        <p class="review-text">"Зашёл случайно — теперь постоянный клиент. Борода наконец выглядит как надо."</p>
+        <div class="review-name">ВИКТОР</div>
+        <div class="review-service">Оформление бороды</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     09 — ФУТЕР
+══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+
+    <div>
+      <div class="footer-logo">BRUTAL CUT</div>
+      <div class="footer-slogan">Мужской барбершоп</div>
+      <div class="footer-city">Серпухов</div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">УСЛУГИ</div>
+      <ul class="footer-links">
+        <li>Стрижки</li>
+        <li>Борода</li>
+        <li>Бритьё</li>
+        <li>Камуфляж</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">АДРЕС</div>
+      <div class="footer-address">
+        Серпухов<br>
+        ул. Ворошилова 12<br><br>
+        Пн–Сб 10:00–21:00<br>
+        Вс 11:00–19:00
+      </div>
+      <div class="footer-social">
+        <a href="#">ВКонтакте</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 BRUTAL CUT — Серпухов</span>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     JS
+══════════════════════════════════════════ -->
+<script>
+// Аккордеон услуг
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+
+  // Закрыть все
+  document.querySelectorAll('.accordion-item.open').forEach(el => {
+    el.classList.remove('open');
+  });
+
+  // Открыть текущий если был закрыт
+  if (!isOpen) {
+    item.classList.add('open');
+  }
+}
+
+// Drag-scroll для отзывов
+(function() {
+  const wrap = document.getElementById('reviewsTrack');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  wrap.addEventListener('mousedown', e => {
+    isDown = true;
+    wrap.classList.add('grabbing');
+    startX = e.pageX - wrap.offsetLeft;
+    scrollLeft = wrap.scrollLeft;
+  });
+  wrap.addEventListener('mouseleave', () => {
+    isDown = false;
+    wrap.classList.remove('grabbing');
+  });
+  wrap.addEventListener('mouseup', () => {
+    isDown = false;
+    wrap.classList.remove('grabbing');
+  });
+  wrap.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - wrap.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    wrap.scrollLeft = scrollLeft - walk;
+  });
+})();
+
+// Маска телефона
+document.getElementById('fphone').addEventListener('input', function(e) {
+  let v = e.target.value.replace(/\D/g, '');
+  if (v.startsWith('8')) v = '7' + v.slice(1);
+  if (!v.startsWith('7')) v = '7' + v;
+  v = v.slice(0, 11);
+  let f = '+7';
+  if (v.length > 1) f += ' (' + v.slice(1, 4);
+  if (v.length >= 4) f += ') ' + v.slice(4, 7);
+  if (v.length >= 7) f += '-' + v.slice(7, 9);
+  if (v.length >= 9) f += '-' + v.slice(9, 11);
+  e.target.value = f;
+});
+
+// Отправка формы
+function submitForm() {
+  const masterEl = document.getElementById('fmaster');
+  const timeEl = document.getElementById('ftime');
+  const dateEl = document.getElementById('fdate');
+
+  const masterMap = {
+    artem: 'Артём',
+    maxim: 'Максим',
+    denis: 'Денис',
+    any: 'Любой свободный',
+    '': 'Мастер'
+  };
+
+  const master = masterMap[masterEl.value] || 'Мастер';
+  const time = timeEl.value || '00:00';
+
+  let dateStr = 'скоро';
+  if (dateEl.value) {
+    const d = new Date(dateEl.value);
+    const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+    const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    dateStr = days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()];
+  }
+
+  document.getElementById('confirmTitle').textContent = master.toUpperCase() + ' · ' + dateStr.toUpperCase() + ' · ' + time;
+
+  const form = document.getElementById('bookingForm');
+  const confirm = document.getElementById('bookingConfirm');
+
+  form.style.transition = 'opacity 0.4s';
+  form.style.opacity = '0';
+  setTimeout(() => {
+    form.style.display = 'none';
+    confirm.style.display = 'block';
+    confirm.style.opacity = '0';
+    confirm.style.transition = 'opacity 0.4s';
+    requestAnimationFrame(() => {
+      confirm.style.opacity = '1';
+    });
+  }, 400);
+}
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Установить минимальную дату — сегодня
+const dateInput = document.getElementById('fdate');
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const dd = String(today.getDate()).padStart(2, '0');
+dateInput.min = `${yyyy}-${mm}-${dd}`;
+</script>
+
+</body>
+</html>

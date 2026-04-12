@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAST — Натяжные потолки в Серпухове</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black:     #0C0C0C;
+            --white:     #FFFFFF;
+            --cream:     #F7F4EF;
+            --warm-gray: #9A9488;
+            --line:      #E2DDD6;
+            --accent:    #C8B89A;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── NAVIGATION ────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 22px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.35s ease, border-color 0.35s ease;
+            border-bottom: 1px solid transparent;
+        }
+        nav.scrolled {
+            background: var(--white);
+            border-bottom-color: var(--line);
+        }
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--black);
+            text-decoration: none;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-menu a {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-menu a:hover { color: var(--black); }
+        .nav-phone {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* ── HERO ──────────────────────────────────────── */
+        #hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            overflow: hidden;
+        }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+        }
+        .hero-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--warm-gray);
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.1s;
+        }
+        .hero-h1 {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 80px;
+            font-weight: 400;
+            color: var(--black);
+            line-height: 0.92;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+        .hero-h1 .word {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero-h1 .word:nth-child(1) { animation: wordReveal 0.55s ease forwards 0.2s; }
+        .hero-h1 .word:nth-child(2) { animation: wordReveal 0.55s ease forwards 0.35s; }
+        .hero-h1 .word:nth-child(3) { animation: wordReveal 0.55s ease forwards 0.5s; }
+
+        @keyframes wordReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; }
+        }
+
+        .hero-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            max-width: 400px;
+            margin-bottom: 44px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.7s;
+        }
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.9s;
+        }
+        .btn-outline {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--black);
+            border: 1px solid var(--black);
+            background: transparent;
+            padding: 14px 28px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.25s, color 0.25s;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .btn-outline:hover { background: var(--black); color: var(--white); }
+        .hero-sep {
+            width: 1px;
+            height: 18px;
+            background: var(--line);
+            margin: 0 28px;
+            flex-shrink: 0;
+        }
+        .hero-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--warm-gray);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+        .hero-link:hover { color: var(--black); }
+
+        .hero-right {
+            position: relative;
+            background: linear-gradient(135deg, #E8E4DE 0%, #F7F4EF 40%, #D4CEC6 100%);
+            opacity: 0;
+            transform: scale(0.98);
+            animation: heroRight 0.9s ease forwards 0.6s;
+            overflow: hidden;
+        }
+        @keyframes heroRight {
+            to { opacity: 1; transform: scale(1); }
+        }
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                180deg,
+                transparent 0px,
+                transparent 58px,
+                rgba(255,255,255,0.45) 58px,
+                rgba(255,255,255,0.45) 60px
+            );
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .hero-right::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 120px,
+                rgba(255,255,255,0.15) 120px,
+                rgba(255,255,255,0.15) 121px
+            );
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .hero-counter {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--warm-gray);
+            letter-spacing: 0.05em;
+            z-index: 1;
+        }
+
+        /* ── TICKER ────────────────────────────────────── */
+        .ticker {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 14px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-track {
+            display: inline-flex;
+            animation: tickerScroll 30s linear infinite;
+        }
+        .ticker-track span {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--warm-gray);
+            padding: 0 20px;
+        }
+        @keyframes tickerScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ── STATS ─────────────────────────────────────── */
+        #stats {
+            background: var(--cream);
+            padding: 80px 60px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .stat-item {
+            padding: 0 48px;
+        }
+        .stat-item:first-child { padding-left: 0; }
+        .stat-item:last-child  { padding-right: 0; }
+        .stat-item:not(:last-child) {
+            border-right: 1px solid var(--line);
+        }
+        .stat-number {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 64px;
+            color: var(--black);
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--warm-gray);
+            line-height: 1.65;
+        }
+
+        /* ── SECTION HEADER ────────────────────────────── */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 48px;
+        }
+        .section-title {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 52px;
+            font-weight: 400;
+            color: var(--black);
+        }
+        .section-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--warm-gray);
+        }
+
+        /* ── MATERIALS ─────────────────────────────────── */
+        #materials {
+            padding: 80px 0 80px 60px;
+            background: var(--white);
+        }
+        #materials .section-header {
+            padding-right: 60px;
+        }
+        .carousel-wrapper {
+            overflow-x: auto;
+            cursor: grab;
+            user-select: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 4px;
+        }
+        .carousel-wrapper::-webkit-scrollbar { display: none; }
+        .carousel-wrapper.grabbing { cursor: grabbing; }
+        .carousel-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            padding-right: 60px;
+        }
+        .material-card {
+            width: 320px;
+            height: 400px;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .material-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.09);
+        }
+        .material-visual {
+            height: 70%;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Stars pseudo-element */
+        .material-visual.stars::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle, rgba(255,255,255,0.9) 0px, transparent 1px) 20px 30px,
+                radial-gradient(circle, rgba(255,255,255,0.7) 0px, transparent 1px) 80px 15px,
+                radial-gradient(circle, rgba(255,255,255,0.95) 0px, transparent 1.5px) 140px 45px,
+                radial-gradient(circle, rgba(255,255,255,0.6) 0px, transparent 1px) 200px 20px,
+                radial-gradient(circle, rgba(255,255,255,0.8) 0px, transparent 1px) 250px 60px,
+                radial-gradient(circle, rgba(255,255,255,0.5) 0px, transparent 1px) 40px 80px,
+                radial-gradient(circle, rgba(255,255,255,0.9) 0px, transparent 1.5px) 110px 95px,
+                radial-gradient(circle, rgba(255,255,255,0.7) 0px, transparent 1px) 170px 72px,
+                radial-gradient(circle, rgba(255,255,255,0.85) 0px, transparent 1px) 230px 88px,
+                radial-gradient(circle, rgba(255,255,255,0.6) 0px, transparent 1px) 60px 125px,
+                radial-gradient(circle, rgba(255,255,255,0.75) 0px, transparent 1.5px) 120px 140px,
+                radial-gradient(circle, rgba(255,255,255,0.9) 0px, transparent 1px) 190px 112px,
+                radial-gradient(circle, rgba(255,255,255,0.65) 0px, transparent 1px) 270px 133px,
+                radial-gradient(circle, rgba(255,255,255,0.85) 0px, transparent 1px) 30px 165px,
+                radial-gradient(circle, rgba(255,255,255,0.7) 0px, transparent 1.5px) 90px 155px,
+                radial-gradient(circle, rgba(255,255,255,0.5) 0px, transparent 1px) 155px 175px,
+                radial-gradient(circle, rgba(255,255,255,0.95) 0px, transparent 1px) 215px 158px,
+                radial-gradient(circle, rgba(255,255,255,0.7) 0px, transparent 1px) 295px 48px,
+                radial-gradient(circle, rgba(255,255,255,0.6) 0px, transparent 1px) 10px 200px,
+                radial-gradient(circle, rgba(255,255,255,0.8) 0px, transparent 1.5px) 180px 200px;
+            background-size: 320px 280px;
+            background-repeat: no-repeat;
+        }
+        .material-info {
+            height: 30%;
+            background: var(--white);
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        }
+        .material-name {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 20px;
+            color: var(--black);
+        }
+        .material-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+        .material-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--warm-gray);
+            font-weight: 500;
+        }
+
+        /* ── PROCESS ───────────────────────────────────── */
+        #process {
+            background: var(--black);
+            padding: 100px 60px;
+            color: var(--white);
+        }
+        .process-header {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 52px;
+            color: var(--white);
+            margin-bottom: 60px;
+        }
+        .process-step {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            align-items: center;
+            padding: 44px 0;
+            border-bottom: 1px solid #2A2A2A;
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .process-step.first-step {
+            border-top: 1px solid #2A2A2A;
+        }
+        .process-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .step-num {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 120px;
+            color: var(--white);
+            opacity: 0.07;
+            line-height: 1;
+            user-select: none;
+        }
+        .step-body {}
+        .step-name {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 28px;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .step-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: rgba(255,255,255,0.38);
+            line-height: 1.8;
+        }
+
+        /* ── CALCULATOR ────────────────────────────────── */
+        #calculator {
+            background: var(--cream);
+            padding: 100px 60px;
+        }
+        .calc-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-top: 12px;
+            margin-bottom: 56px;
+        }
+        .calc-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+        .calc-field label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+            margin-bottom: 8px;
+        }
+        .calc-field input {
+            border: none;
+            border-bottom: 1px solid var(--line);
+            background: transparent;
+            padding: 16px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            color: var(--black);
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .calc-field input:focus { border-bottom-color: var(--black); }
+        .calc-field input::placeholder { color: #D0CDC6; }
+        .calc-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 56px;
+        }
+        .pill {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 10px 22px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--warm-gray);
+            cursor: pointer;
+            border-radius: 100px;
+            transition: all 0.22s ease;
+            outline: none;
+        }
+        .pill:hover { border-color: var(--black); color: var(--black); }
+        .pill.active { background: var(--black); border-color: var(--black); color: var(--white); }
+
+        .calc-result { border-top: 1px solid var(--line); padding-top: 48px; }
+        .calc-rows {
+            max-width: 460px;
+            margin-bottom: 32px;
+        }
+        .res-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .res-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--warm-gray);
+        }
+        .res-val {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--black);
+        }
+        .res-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            max-width: 460px;
+            padding-top: 20px;
+            margin-bottom: 48px;
+        }
+        .res-total-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--black);
+        }
+        .res-total-val {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 48px;
+            color: var(--black);
+        }
+
+        /* ── FORM ──────────────────────────────────────── */
+        #contact {
+            background: var(--white);
+            padding: 100px 60px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .form-left-title {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 36px;
+        }
+        .form-perks {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .form-perk {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+        .form-perk::before { content: '→  '; }
+
+        #the-form {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .f-field label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--warm-gray);
+            margin-bottom: 8px;
+        }
+        .f-field input,
+        .f-field select {
+            border: none;
+            border-bottom: 1px solid var(--line);
+            background: transparent;
+            padding: 12px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--black);
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .f-field input:focus,
+        .f-field select:focus { border-bottom-color: var(--black); }
+        .f-field input::placeholder { color: #CDC9C2; }
+        .f-field select {
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%239A9488' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 2px center;
+            padding-right: 22px;
+            cursor: pointer;
+        }
+        .btn-black {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            background: var(--black);
+            border: none;
+            border-radius: 0;
+            padding: 18px 40px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background 0.2s;
+        }
+        .btn-black:hover { background: #1c1c1c; }
+
+        .form-success {
+            display: none;
+            padding: 40px 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .form-success.show { opacity: 1; }
+        .fs-title {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 32px;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+        .fs-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .fs-phone {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* ── REVIEWS ───────────────────────────────────── */
+        #reviews {
+            background: var(--cream);
+            padding: 100px 60px;
+        }
+        .reviews-title {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 52px;
+            color: var(--black);
+            margin-bottom: 60px;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+        .review-card { border-top: 2px solid var(--accent); padding-top: 32px; }
+        .review-quote {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+            font-size: 17px;
+            color: var(--black);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .review-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--black);
+            margin-bottom: 5px;
+        }
+        .review-detail {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        /* ── FOOTER ────────────────────────────────────── */
+        footer {
+            background: var(--black);
+            padding: 80px 60px 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 64px;
+        }
+        .footer-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--white);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.32);
+            line-height: 1.7;
+        }
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding-top: 6px;
+        }
+        .footer-nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.38);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-nav a:hover { color: var(--white); }
+        .footer-contact-col { display: flex; flex-direction: column; gap: 10px; }
+        .footer-phone {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .footer-info {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.38);
+            line-height: 1.9;
+        }
+        .footer-social {
+            display: flex;
+            gap: 24px;
+            margin-top: 6px;
+        }
+        .footer-social a {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.38);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-social a:hover { color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid #2A2A2A;
+            padding: 22px 0;
+        }
+        .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.22);
+        }
+
+        /* ── SCROLL REVEAL ─────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .reveal.vis { opacity: 1; }
+
+        /* ── MOBILE DRAWER (always in DOM, shown only mobile) ── */
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 102;
+        }
+        .nav-burger span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--black);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { transform: translateY(-3.75px) rotate(-45deg); }
+
+        .mob-drawer {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            z-index: 99;
+            background: var(--white);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 96px 32px 56px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .mob-drawer.open {
+            opacity: 1;
+        }
+        .mob-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .mob-link {
+            font-family: 'Tenor Sans', sans-serif;
+            font-size: 40px;
+            font-weight: 400;
+            color: var(--black);
+            text-decoration: none;
+            line-height: 1.3;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease, color 0.2s;
+        }
+        .mob-drawer.open .mob-link:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+        .mob-drawer.open .mob-link:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+        .mob-drawer.open .mob-link:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.15s; }
+        .mob-drawer.open .mob-link:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.2s; }
+        .mob-link:hover { color: var(--warm-gray); }
+        .mob-phone {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transition: opacity 0.35s ease 0.25s;
+            border-top: 1px solid var(--line);
+            padding-top: 28px;
+            width: 100%;
+            margin-top: auto;
+        }
+        .mob-drawer.open .mob-phone { opacity: 1; }
+
+        /* ══════════════════════════════════════════════════
+           MOBILE  ≤ 768px
+        ══════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* — NAV — */
+            nav {
+                padding: 18px 24px;
+            }
+            .nav-menu,
+            .nav-phone {
+                display: none;
+            }
+            .nav-burger { display: flex; }
+            .mob-drawer { display: flex; }
+
+            /* — HERO — */
+            #hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                height: auto;
+                min-height: 100svh;
+            }
+            .hero-left {
+                padding: 100px 24px 40px;
+                order: 1;
+            }
+            .hero-h1 {
+                font-size: 52px;
+                letter-spacing: -0.02em;
+                line-height: 0.92;
+                margin-bottom: 24px;
+            }
+            .hero-sub {
+                font-size: 14px;
+                margin-bottom: 36px;
+                max-width: 100%;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .hero-sep { display: none; }
+            .btn-outline { width: 100%; text-align: center; }
+            .hero-link { padding: 4px 0; }
+
+            .hero-right {
+                order: 2;
+                height: 240px;
+                width: 100%;
+            }
+            .hero-counter {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            /* — STATS — */
+            #stats {
+                padding: 56px 24px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
+            .stat-item {
+                padding: 28px 0;
+                border-right: none !important;
+            }
+            .stat-item:nth-child(1),
+            .stat-item:nth-child(2) {
+                border-bottom: 1px solid var(--line);
+            }
+            .stat-item:nth-child(odd) {
+                padding-right: 24px;
+                border-right: 1px solid var(--line) !important;
+            }
+            .stat-item:nth-child(even) {
+                padding-left: 24px;
+            }
+            .stat-number { font-size: 44px; }
+            .stat-label  { font-size: 12px; }
+
+            /* — SECTION HEADER — */
+            .section-header {
+                padding-bottom: 18px;
+                margin-bottom: 32px;
+            }
+            .section-title { font-size: 36px; }
+            .section-tag   { font-size: 12px; }
+
+            /* — MATERIALS — */
+            #materials {
+                padding: 60px 0 60px 24px;
+            }
+            #materials .section-header {
+                padding-right: 24px;
+                margin-bottom: 32px;
+            }
+            .material-card {
+                width: 260px;
+                height: 340px;
+            }
+            .carousel-track { padding-right: 24px; gap: 16px; }
+            .material-name  { font-size: 17px; }
+
+            /* — PROCESS — */
+            #process { padding: 72px 24px; }
+            .process-header { font-size: 36px; margin-bottom: 40px; }
+            .process-step {
+                grid-template-columns: 80px 1fr;
+                padding: 32px 0;
+                gap: 0;
+            }
+            .step-num  { font-size: 72px; }
+            .step-name { font-size: 22px; }
+            .step-desc { font-size: 14px; }
+
+            /* — CALCULATOR — */
+            #calculator { padding: 72px 24px; }
+            .calc-sub   { font-size: 14px; margin-bottom: 40px; }
+            .calc-inputs {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                max-width: 100%;
+                margin-bottom: 32px;
+            }
+            .calc-field input { font-size: 28px; }
+            .calc-types       { gap: 8px; margin-bottom: 40px; }
+            .pill             { font-size: 12px; padding: 9px 16px; }
+            .res-total-val    { font-size: 36px; }
+            .res-total-row    { max-width: 100%; }
+            .calc-rows        { max-width: 100%; }
+            #calculator .btn-outline { width: 100%; text-align: center; }
+
+            /* — FORM — */
+            #contact { padding: 72px 24px; }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .form-left-title { font-size: 36px; }
+            .btn-black       { width: 100%; text-align: center; padding: 18px 24px; }
+
+            /* — REVIEWS — */
+            #reviews { padding: 72px 24px; }
+            .reviews-title { font-size: 36px; margin-bottom: 40px; }
+            .reviews-grid  {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .review-quote { font-size: 15px; }
+
+            /* — FOOTER — */
+            footer { padding: 56px 24px 0; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-bottom: 48px;
+            }
+            .footer-logo-text { font-size: 22px; }
+        }
+
+        /* ══════════════════════════════════════════════════
+           SMALL PHONES  ≤ 390px
+        ══════════════════════════════════════════════════ */
+        @media (max-width: 390px) {
+            .hero-h1     { font-size: 44px; }
+            .section-title,
+            .process-header,
+            .reviews-title { font-size: 32px; }
+            .form-left-title { font-size: 30px; }
+            .stat-number { font-size: 38px; }
+            .res-total-val { font-size: 32px; }
+            .calc-inputs { grid-template-columns: 1fr; }
+            .calc-field input { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 01 NAVIGATION -->
+<nav id="navbar">
+    <a href="#" class="nav-logo">PLAST</a>
+    <div class="nav-right">
+        <ul class="nav-menu">
+            <li><a href="#materials">Проекты</a></li>
+            <li><a href="#materials">Материалы</a></li>
+            <li><a href="#calculator">Цены</a></li>
+            <li><a href="#contact">Контакт</a></li>
+        </ul>
+        <a href="tel:+74967000000" class="nav-phone">+7 (4967) 00-00-00</a>
+    </div>
+    <!-- mobile burger -->
+    <button class="nav-burger" id="burger" aria-label="Меню">
+        <span></span><span></span>
+    </button>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mob-drawer" id="mobDrawer">
+    <nav class="mob-nav">
+        <a href="#materials" class="mob-link">Проекты</a>
+        <a href="#materials" class="mob-link">Материалы</a>
+        <a href="#calculator" class="mob-link">Цены</a>
+        <a href="#contact"   class="mob-link">Контакт</a>
+    </nav>
+    <a href="tel:+74967000000" class="mob-phone">+7 (4967) 00-00-00</a>
+</div>
+
+<!-- 02 HERO -->
+<section id="hero">
+    <div class="hero-left">
+        <p class="hero-tag">Серпухов · МО · с 2015 года</p>
+        <h1 class="hero-h1">
+            <span class="word">Натяжные</span>
+            <span class="word">потолки</span>
+            <span class="word">в Серпухове</span>
+        </h1>
+        <p class="hero-sub">Бесплатный замер, монтаж за один день. Работаем с 2015 года — более 500 реализованных объектов.</p>
+        <div class="hero-actions">
+            <a href="#calculator" class="btn-outline">Рассчитать стоимость</a>
+            <div class="hero-sep"></div>
+            <a href="#materials" class="hero-link">Смотреть проекты →</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <span class="hero-counter">↗ 500+ проектов</span>
+    </div>
+</section>
+
+<!-- 03 TICKER -->
+<div class="ticker">
+    <div class="ticker-track" id="tickerTrack">
+        <span>Глянцевые</span><span>·</span>
+        <span>Матовые</span><span>·</span>
+        <span>Сатиновые</span><span>·</span>
+        <span>Фотопечать</span><span>·</span>
+        <span>Многоуровневые</span><span>·</span>
+        <span>Звёздное небо</span><span>·</span>
+        <span>Парящие</span><span>·</span>
+        <span>С подсветкой</span><span>·</span>
+        <span>Глянцевые</span><span>·</span>
+        <span>Матовые</span><span>·</span>
+        <span>Сатиновые</span><span>·</span>
+        <span>Фотопечать</span><span>·</span>
+        <span>Многоуровневые</span><span>·</span>
+        <span>Звёздное небо</span><span>·</span>
+        <span>Парящие</span><span>·</span>
+        <span>С подсветкой</span><span>·</span>
+    </div>
+</div>
+
+<!-- 04 STATS -->
+<section id="stats">
+    <div class="stats-grid">
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">Реализованных<br>проектов</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="15" data-suffix=" лет">0</div>
+            <div class="stat-label">Гарантия<br>на полотно</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="1" data-suffix=" день">0</div>
+            <div class="stat-label">Монтаж<br>под ключ</div>
+        </div>
+        <div class="stat-item reveal">
+            <div class="stat-number" data-target="0" data-suffix=" ₽">0</div>
+            <div class="stat-label">Замер<br>и расчёт</div>
+        </div>
+    </div>
+</section>
+
+<!-- 05 MATERIALS -->
+<section id="materials">
+    <div class="section-header">
+        <h2 class="section-title">Материалы</h2>
+        <span class="section-tag">6 видов полотен</span>
+    </div>
+    <div class="carousel-wrapper" id="carousel">
+        <div class="carousel-track">
+
+            <div class="material-card">
+                <div class="material-visual" style="background: linear-gradient(160deg, #D4D0CC 0%, #F0EDE8 50%, #C8C4BE 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Глянцевый</div>
+                    <div class="material-desc">Визуально увеличивает пространство</div>
+                    <div class="material-price">от 350 ₽/м²</div>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <div class="material-visual" style="background: linear-gradient(160deg, #E8E4E0 0%, #F5F2EE 50%, #DDD9D4 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Матовый</div>
+                    <div class="material-desc">Рассеивает свет, скрывает дефекты</div>
+                    <div class="material-price">от 290 ₽/м²</div>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <div class="material-visual" style="background: linear-gradient(160deg, #DCDAD8 0%, #ECEAE6 50%, #D0CEC8 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Сатиновый</div>
+                    <div class="material-desc">Шёлковый блеск, нейтральная фактура</div>
+                    <div class="material-price">от 320 ₽/м²</div>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <div class="material-visual" style="background: linear-gradient(160deg, #C8C4BE 0%, #E0DCD6 50%, #B8B4AC 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Фотопечать</div>
+                    <div class="material-desc">Любое изображение на потолке</div>
+                    <div class="material-price">от 650 ₽/м²</div>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <div class="material-visual stars" style="background: linear-gradient(160deg, #1A1A2E 0%, #2D2D44 50%, #0C0C1E 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Звёздное небо</div>
+                    <div class="material-desc">Оптоволокно, мерцание, атмосфера</div>
+                    <div class="material-price">от 1 200 ₽/м²</div>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <div class="material-visual" style="background: linear-gradient(160deg, #E4E0DA 0%, #F2EFEA 50%, #D8D4CE 100%);"></div>
+                <div class="material-info">
+                    <div class="material-name">Многоуровневый</div>
+                    <div class="material-desc">Архитектурные формы с подсветкой</div>
+                    <div class="material-price">от 450 ₽/м²</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 06 PROCESS -->
+<section id="process">
+    <h2 class="process-header">Как это работает</h2>
+
+    <div class="process-step first-step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+            <div class="step-name">Заявка</div>
+            <div class="step-desc">Оставляете заявку — перезвоним за 15 минут</div>
+        </div>
+    </div>
+
+    <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+            <div class="step-name">Замер</div>
+            <div class="step-desc">Приезжаем бесплатно, замеряем, показываем каталог</div>
+        </div>
+    </div>
+
+    <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+            <div class="step-name">Монтаж</div>
+            <div class="step-desc">Устанавливаем в согласованный день за 1 день</div>
+        </div>
+    </div>
+
+    <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+            <div class="step-name">Результат</div>
+            <div class="step-desc">Принимаете работу — платите только если довольны</div>
+        </div>
+    </div>
+</section>
+
+<!-- 07 CALCULATOR -->
+<section id="calculator">
+    <div class="section-header" style="margin-bottom: 0; border: none; padding-bottom: 0;">
+        <h2 class="section-title">Рассчитать стоимость</h2>
+    </div>
+    <p class="calc-sub">Введите размеры — получите цену за 3 секунды</p>
+
+    <div class="calc-inputs">
+        <div class="calc-field">
+            <label>Длина, м</label>
+            <input type="number" id="inp-len" placeholder="0.0" min="0" step="0.1">
+        </div>
+        <div class="calc-field">
+            <label>Ширина, м</label>
+            <input type="number" id="inp-wid" placeholder="0.0" min="0" step="0.1">
+        </div>
+    </div>
+
+    <div class="calc-types">
+        <button class="pill active" data-price="290">Матовый</button>
+        <button class="pill" data-price="350">Глянцевый</button>
+        <button class="pill" data-price="320">Сатиновый</button>
+        <button class="pill" data-price="650">Фотопечать</button>
+        <button class="pill" data-price="450">Многоуровневый</button>
+        <button class="pill" data-price="1200">Звёздное небо</button>
+    </div>
+
+    <div class="calc-result">
+        <div class="calc-rows">
+            <div class="res-row">
+                <span class="res-label">Площадь</span>
+                <span class="res-val" id="r-area">— м²</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Материал</span>
+                <span class="res-val" id="r-mat">— ₽</span>
+            </div>
+            <div class="res-row">
+                <span class="res-label">Монтаж</span>
+                <span class="res-val" id="r-inst">— ₽</span>
+            </div>
+        </div>
+        <div class="res-total-row">
+            <span class="res-total-label">Итого</span>
+            <span class="res-total-val" id="r-total">— ₽</span>
+        </div>
+        <a href="#contact" class="btn-outline">Уточнить у замерщика</a>
+    </div>
+</section>
+
+<!-- 08 FORM -->
+<section id="contact">
+    <div class="form-grid">
+        <div class="form-left">
+            <h2 class="form-left-title">Бесплатный замер в удобное время</h2>
+            <div class="form-perks">
+                <p class="form-perk">Приедем сегодня если успели до 14:00</p>
+                <p class="form-perk">Замерим точно до сантиметра</p>
+                <p class="form-perk">Рассчитаем итоговую сумму сразу на месте</p>
+            </div>
+        </div>
+        <div class="form-right">
+            <form id="the-form">
+                <div class="f-field">
+                    <label>Имя</label>
+                    <input type="text" name="name" placeholder="Ваше имя">
+                </div>
+                <div class="f-field">
+                    <label>Телефон</label>
+                    <input type="tel" id="phone-inp" name="phone" placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="f-field">
+                    <label>Адрес</label>
+                    <input type="text" name="address" placeholder="Улица, дом">
+                </div>
+                <div class="f-field">
+                    <label>Количество комнат</label>
+                    <select name="rooms">
+                        <option value="" disabled selected>Выберите</option>
+                        <option>1 комната</option>
+                        <option>2 комнаты</option>
+                        <option>3 комнаты</option>
+                        <option>4 комнаты</option>
+                        <option>5+ комнат</option>
+                    </select>
+                </div>
+                <div class="f-field">
+                    <label>Удобное время</label>
+                    <select name="time">
+                        <option value="" disabled selected>Выберите</option>
+                        <option>Сегодня утром (8:00–12:00)</option>
+                        <option>Сегодня днём (12:00–17:00)</option>
+                        <option>Сегодня вечером (17:00–20:00)</option>
+                        <option>Завтра утром (8:00–12:00)</option>
+                        <option>Завтра днём (12:00–17:00)</option>
+                        <option>Удобное время уточним по телефону</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-black">Вызвать замерщика</button>
+            </form>
+            <div class="form-success" id="form-success">
+                <div class="fs-title">Заявка принята</div>
+                <p class="fs-text">Перезвоним в течение 15 минут<br>для согласования времени замера.</p>
+                <a href="tel:+74967000000" class="fs-phone">+7 (4967) 00-00-00</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 09 REVIEWS -->
+<section id="reviews">
+    <h2 class="reviews-title reveal">Говорят клиенты</h2>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <p class="review-quote">«Делали три комнаты сразу. Мастера работали тихо и аккуратно, мебель не задели. Вечером квартира была готова.»</p>
+            <div class="review-author">Ирина</div>
+            <div class="review-detail">Спальня + гостиная + детская, Серпухов</div>
+        </div>
+        <div class="review-card reveal">
+            <p class="review-quote">«Глянцевый потолок в гостиной. Комната стала визуально выше. Цена совпала с расчётом — ни копейки сверху.»</p>
+            <div class="review-author">Андрей</div>
+            <div class="review-detail">Гостиная 28м², Пущино</div>
+        </div>
+        <div class="review-card reveal">
+            <p class="review-quote">«Звёздное небо в детской. Дочь засыпает глядя на потолок. Спасибо за идею с подсветкой по периметру.»</p>
+            <div class="review-author">Татьяна</div>
+            <div class="review-detail">Детская 14м², Серпухов</div>
+        </div>
+    </div>
+</section>
+
+<!-- 10 FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <span class="footer-logo-text">PLAST</span>
+            <p class="footer-tagline">Натяжные потолки.<br>Серпухов и МО.</p>
+        </div>
+        <div>
+            <ul class="footer-nav">
+                <li><a href="#materials">Проекты</a></li>
+                <li><a href="#materials">Материалы</a></li>
+                <li><a href="#calculator">Цены</a></li>
+                <li><a href="#contact">Контакт</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact-col">
+            <a href="tel:+74967000000" class="footer-phone">+7 (4967) 00-00-00</a>
+            <p class="footer-info">Серпухов, ул. Калужская 8<br>Пн–Сб 8:00–20:00</p>
+            <div class="footer-social">
+                <a href="#">ВКонтакте</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2025 PLAST — Натяжные потолки в Серпухове</p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ── NAV scroll ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    /* ── Generic reveal ── */
+    const revealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('vis');
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+        revealObs.observe(el);
+    });
+
+    /* ── Process steps ── */
+    const processSteps = document.querySelectorAll('.process-step');
+    const processObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) {
+                processSteps.forEach(function (step, i) {
+                    setTimeout(function () { step.classList.add('visible'); }, i * 160);
+                });
+                processObs.disconnect();
+            }
+        });
+    }, { threshold: 0.15 });
+    var proc = document.getElementById('process');
+    if (proc) processObs.observe(proc);
+
+    /* ── Count-up ── */
+    function countUp(el, target, suffix) {
+        var duration = (target === 0) ? 300 : 1400;
+        var start = performance.now();
+        function frame(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var ease = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(ease * target) + suffix;
+            if (progress < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    }
+
+    var statsObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) {
+                document.querySelectorAll('.stat-number[data-target]').forEach(function (num) {
+                    var t = parseInt(num.dataset.target, 10);
+                    var s = num.dataset.suffix || '';
+                    countUp(num, t, s);
+                    num.removeAttribute('data-target');
+                });
+                statsObs.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+    var statsEl = document.getElementById('stats');
+    if (statsEl) statsObs.observe(statsEl);
+
+    /* ── Carousel drag ── */
+    var car = document.getElementById('carousel');
+    var isDown = false, startX = 0, scrollL = 0;
+
+    car.addEventListener('mousedown', function (e) {
+        isDown = true;
+        car.classList.add('grabbing');
+        startX = e.pageX - car.offsetLeft;
+        scrollL = car.scrollLeft;
+    });
+    car.addEventListener('mouseleave', function () { isDown = false; car.classList.remove('grabbing'); });
+    car.addEventListener('mouseup',    function () { isDown = false; car.classList.remove('grabbing'); });
+    car.addEventListener('mousemove',  function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - car.offsetLeft;
+        car.scrollLeft = scrollL - (x - startX) * 1.4;
+    });
+
+    /* ── Calculator ── */
+    var inpLen = document.getElementById('inp-len');
+    var inpWid = document.getElementById('inp-wid');
+    var pills  = document.querySelectorAll('.pill');
+    var pricePerM = 290;
+
+    pills.forEach(function (p) {
+        p.addEventListener('click', function () {
+            pills.forEach(function (x) { x.classList.remove('active'); });
+            p.classList.add('active');
+            pricePerM = parseInt(p.dataset.price, 10);
+            calc();
+        });
+    });
+    inpLen.addEventListener('input', calc);
+    inpWid.addEventListener('input', calc);
+
+    function fmt(n) { return n.toLocaleString('ru-RU'); }
+
+    function calc() {
+        var l = parseFloat(inpLen.value) || 0;
+        var w = parseFloat(inpWid.value) || 0;
+        var area = l * w;
+
+        if (area <= 0) {
+            document.getElementById('r-area').textContent  = '— м²';
+            document.getElementById('r-mat').textContent   = '— ₽';
+            document.getElementById('r-inst').textContent  = '— ₽';
+            document.getElementById('r-total').textContent = '— ₽';
+            return;
+        }
+
+        var mat   = Math.round(area * pricePerM);
+        var inst  = Math.round(area * 150);
+        var total = mat + inst;
+
+        document.getElementById('r-area').textContent  = area.toFixed(1) + ' м²';
+        document.getElementById('r-mat').textContent   = fmt(mat)   + ' ₽';
+        document.getElementById('r-inst').textContent  = fmt(inst)  + ' ₽';
+        document.getElementById('r-total').textContent = fmt(total) + ' ₽';
+    }
+
+    /* ── Phone mask ── */
+    var phoneInp = document.getElementById('phone-inp');
+    phoneInp.addEventListener('input', function (e) {
+        var raw = e.target.value.replace(/\D/g, '');
+        if (raw.charAt(0) === '7' || raw.charAt(0) === '8') raw = raw.slice(1);
+        raw = raw.slice(0, 10);
+        var out = '+7';
+        if (raw.length > 0) out += ' (' + raw.slice(0, 3);
+        if (raw.length >= 3) out += ') ' + raw.slice(3, 6);
+        if (raw.length >= 6) out += '-' + raw.slice(6, 8);
+        if (raw.length >= 8) out += '-' + raw.slice(8, 10);
+        e.target.value = out;
+    });
+
+    /* ── Form submit ── */
+    var theForm    = document.getElementById('the-form');
+    var successDiv = document.getElementById('form-success');
+
+    theForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        theForm.style.transition = 'opacity 0.3s ease';
+        theForm.style.opacity    = '0';
+        setTimeout(function () {
+            theForm.style.display   = 'none';
+            successDiv.style.display = 'block';
+            setTimeout(function () { successDiv.classList.add('show'); }, 30);
+        }, 300);
+    });
+
+    /* ── Mobile burger ── */
+    var burger    = document.getElementById('burger');
+    var mobDrawer = document.getElementById('mobDrawer');
+    var mobLinks  = document.querySelectorAll('.mob-link');
+
+    function toggleMenu() {
+        var open = burger.classList.toggle('open');
+        if (open) {
+            mobDrawer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            setTimeout(function () { mobDrawer.classList.add('open'); }, 10);
+        } else {
+            mobDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(function () { mobDrawer.style.display = 'none'; }, 300);
+        }
+    }
+
+    burger.addEventListener('click', toggleMenu);
+
+    mobLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            burger.classList.remove('open');
+            mobDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(function () { mobDrawer.style.display = 'none'; }, 300);
+        });
+    });
+
+    /* nav burger color: white on transparent hero, black when scrolled */
+    window.addEventListener('scroll', function () {
+        var scrolled = window.scrollY > 50;
+        burger.querySelectorAll('span').forEach(function (s) {
+            s.style.background = scrolled ? 'var(--black)' : 'var(--black)';
+        });
+    }, { passive: true });
+
+})();
+</script>
+</body>
+</html>
