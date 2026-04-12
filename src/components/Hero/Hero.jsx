@@ -223,11 +223,14 @@ export default function Hero() {
       className="hero-section"
       style={{
         position: 'relative',
-        height: '100vh',
+        height: isMobile ? 'auto' : '100vh',
+        minHeight: isMobile ? 'auto' : undefined,
+        paddingTop: isMobile ? '100px' : undefined,
+        paddingBottom: isMobile ? '60px' : undefined,
         background: '#050505',
         overflow: 'hidden',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: isMobile ? 'flex-start' : 'center',
       }}
     >
       {/* ── Background ──────────────────────────────────────────── */}
@@ -564,8 +567,6 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 768px) {
-          .hero-section { align-items: flex-start !important; }
-          .hero-content { padding-top: 96px !important; }
           .hero-scroll-indicator { display: none !important; }
         }
       `}</style>

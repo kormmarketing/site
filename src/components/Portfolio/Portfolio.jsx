@@ -847,26 +847,6 @@ export default function Portfolio() {
           >
             Обсудить ваш проект →
           </a>
-          <a
-            href="https://t.me/korm_marketing"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              padding: '16px 36px', borderRadius: '100px',
-              border: '1px solid #1E1E1E',
-              background: 'transparent',
-              color: '#A0A0A0',
-              fontFamily: 'Inter, sans-serif',
-              fontSize: '15px', fontWeight: 500,
-              textDecoration: 'none',
-              transition: 'border-color 0.2s, color 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = '#6366F1'; e.currentTarget.style.color = '#FFFFFF' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = '#1E1E1E'; e.currentTarget.style.color = '#A0A0A0' }}
-          >
-            Запросить больше работ →
-          </a>
         </div>
       </div>
 
