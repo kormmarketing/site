@@ -110,7 +110,7 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
               {[
-                { label: 'Telegram', href: 'https://t.me/' },
+                { label: 'Telegram', href: 'https://t.me/korm_marketing' },
                 { label: 'Серпухов, МО', href: null },
               ].map(({ label, href }) =>
                 href ? (
@@ -135,7 +135,7 @@ export default function Footer() {
             {/* Socials */}
             <div style={{ display: 'flex', gap: '12px' }}>
               {[
-                { Icon: TelegramIcon, href: 'https://t.me/', label: 'Telegram' },
+                { Icon: TelegramIcon, href: 'https://t.me/korm_marketing', label: 'Telegram' },
               ].map(({ Icon, href, label }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                   aria-label={label}

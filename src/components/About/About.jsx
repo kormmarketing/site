@@ -82,7 +82,8 @@ export default function About() {
           {/* Background photo */}
           <img
             src="/about-photo.png"
-            alt=""
+            alt="Роман — специалист по digital-маркетингу, КОРМ Маркетинг, Серпухов"
+            loading="lazy"
             style={{
               position: 'absolute', inset: 0,
               width: '100%', height: '100%',

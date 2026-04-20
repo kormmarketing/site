@@ -149,7 +149,28 @@ const STATS = [
 const SUB_WORDS = 'Сайты · Реклама · Автоматизация · ИИ'.split(' ')
 
 export default function Hero() {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  )
+  const [glSupported, setGlSupported] = useState(true)
+
+  // Update isMobile on resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Check WebGL support once
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl') || canvas.getContext('webgl2')
+      setGlSupported(!!gl)
+    } catch {
+      setGlSupported(false)
+    }
+  }, [])
 
   // Typewriter
   const [typed, setTyped]   = useState('')
@@ -235,7 +256,7 @@ export default function Hero() {
     >
       {/* ── Background ──────────────────────────────────────────── */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        {isMobile ? (
+        {isMobile || !glSupported ? (
           <div style={{
             width: '100%', height: '100%',
             background: 'radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99,102,241,0.12) 0%, transparent 60%), #050505',
@@ -243,8 +264,11 @@ export default function Hero() {
         ) : (
           <Canvas
             camera={{ fov: 75, near: 0.1, far: 100, position: [0, 0, 5] }}
-            gl={{ antialias: false, alpha: false }}
+            gl={{ antialias: false, alpha: false, failIfMajorPerformanceCaveat: false }}
             style={{ background: '#050505' }}
+            onCreated={({ gl }) => {
+              gl.setClearColor('#050505')
+            }}
           >
             <ParticleGrid />
           </Canvas>
@@ -282,10 +306,10 @@ export default function Hero() {
         {/* ── H1 three lines ──────────────────────────────────── */}
         <div style={{ marginBottom: '44px' }}>
 
-          {/* Line 1 */}
+          {/* Line 1 — semantic H1 */}
           <div style={{ overflow: 'hidden' }}>
             <div ref={wrap1} style={{ opacity: 0 }}>
-              <p
+              <h1
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: 'clamp(36px, 6.5vw, 160px)',
@@ -297,7 +321,7 @@ export default function Hero() {
                 }}
               >
                 Делаем бизнес
-              </p>
+              </h1>
             </div>
           </div>
 

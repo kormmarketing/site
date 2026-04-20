@@ -240,8 +240,9 @@ export default function Nav() {
             aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
             style={{
               display: 'none', flexDirection: 'column', justifyContent: 'center',
-              gap: '5px', width: '32px', height: '32px',
-              background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
+              alignItems: 'center',
+              gap: '5px', width: '44px', height: '44px',
+              background: 'none', border: 'none', cursor: 'pointer', padding: '10px',
               flexShrink: 0,
             }}
             className="nav-burger"

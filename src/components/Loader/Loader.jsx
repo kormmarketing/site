@@ -9,35 +9,34 @@ export default function Loader({ onComplete }) {
   const dotRef       = useRef(null)
 
   useEffect(() => {
+    // Safety timeout — если анимация зависнет, убираем лоадер через 5 секунд
+    const safetyTimer = setTimeout(() => { onComplete() }, 5000)
+
     const tl = gsap.timeline()
 
-    // 1. Logo slides in
     tl.fromTo(logoRef.current,
       { opacity: 0, y: 24 },
       { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }
     )
-    // 2. Sub-text
     tl.fromTo(subRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 0.35 },
       '-=0.2'
     )
-    // 3. Progress bar fills
     tl.fromTo(barRef.current,
       { scaleX: 0, transformOrigin: 'left' },
       { scaleX: 1, duration: 1.1, ease: 'power2.inOut' },
       '-=0.1'
     )
-    // 4. Brief pause then slide up
     tl.to(containerRef.current, {
       yPercent: -105,
       duration: 0.75,
       ease: 'power4.inOut',
       delay: 0.25,
-      onComplete,
+      onComplete: () => { clearTimeout(safetyTimer); onComplete() },
     })
 
-    return () => tl.kill()
+    return () => { tl.kill(); clearTimeout(safetyTimer) }
   }, [onComplete])
 
   return (

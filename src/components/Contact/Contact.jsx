@@ -30,9 +30,10 @@ const onBlur = (e) => {
 
 // ── Component ───────────────────────────────────────────────────────
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', contact: '', task: '', budget: '', message: '' })
+  const [form, setForm]   = useState({ name: '', contact: '', task: '', budget: '', message: '' })
   const [sent, setSent]   = useState(false)
   const [busy, setBusy]   = useState(false)
+  const [error, setError] = useState('')
 
   const labelRef      = useRef(null)
   const titleInnerRef = useRef(null)
@@ -49,6 +50,9 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+    if (!form.name.trim()) { setError('Введите имя'); return }
+    if (!form.contact.trim()) { setError('Введите телефон или Telegram'); return }
     setBusy(true)
 
     const TOKEN   = '8785875286:AAFx1vAFRe2rGt4HEcb6fQlhQlVESrVZT7Q'
@@ -66,25 +70,27 @@ export default function Contact() {
     const text = [
       '🔔 *Новая заявка с сайта КОРМ*',
       '',
-      `👤 *Имя:* ${form.name}`,
-      `📱 *Контакт:* ${form.contact}`,
+      `👤 *Имя:* ${form.name.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&')}`,
+      `📱 *Контакт:* ${form.contact.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&')}`,
       `🎯 *Задача:* ${taskLabel[form.task] || '—'}`,
       `💰 *Бюджет:* ${budgetLabel[form.budget] || '—'}`,
       `💬 *Сообщение:* ${form.message || '—'}`,
     ].join('\n')
 
     try {
-      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' }),
       })
+      if (!res.ok) throw new Error('Сервер недоступен')
+      setSent(true)
     } catch (err) {
       console.error('Telegram error:', err)
+      setError('Ошибка отправки. Напишите напрямую в Telegram: @korm_marketing')
+    } finally {
+      setBusy(false)
     }
-
-    setBusy(false)
-    setSent(true)
   }
 
   return (
@@ -265,6 +271,15 @@ export default function Contact() {
                 {busy ? 'Отправляю...' : 'Отправить заявку →'}
               </motion.button>
 
+              {error && (
+                <p style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '13px', color: '#F87171',
+                  textAlign: 'center', margin: '4px 0 0',
+                }}>
+                  {error}
+                </p>
+              )}
               <p style={{
                 fontFamily: 'Inter, sans-serif',
                 fontSize: '12px', color: '#4A4A4A',

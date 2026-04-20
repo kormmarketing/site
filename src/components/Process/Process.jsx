@@ -38,7 +38,7 @@ export default function Process() {
     const wrap = lineWrap.current
     if (!line || !wrap) return
 
-    gsap.fromTo(line,
+    const tween = gsap.fromTo(line,
       { scaleY: 0, transformOrigin: 'top center' },
       {
         scaleY: 1,
@@ -51,7 +51,8 @@ export default function Process() {
         },
       },
     )
-    return () => ScrollTrigger.getAll().forEach(t => t.kill())
+    // Kill only THIS tween's ScrollTrigger, not all of them
+    return () => tween.scrollTrigger?.kill()
   }, [])
 
   // Card slide-in from sides

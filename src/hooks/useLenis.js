@@ -9,18 +9,19 @@ export function useLenis() {
       smoothWheel: true,
     })
 
-    // Expose instance globally so Nav can call lenis.scrollTo
     window.__lenis = lenis
 
+    // Track the CURRENT rafId so we can cancel it even after inner re-schedules
+    let rafId = null
     function raf(time) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-
-    const rafId = requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
     return () => {
-      cancelAnimationFrame(rafId)
+      if (rafId) cancelAnimationFrame(rafId)
+      rafId = null
       lenis.destroy()
       window.__lenis = null
     }
