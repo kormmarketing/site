@@ -3,8 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dental Club — Серпухов</title>
-<meta name="description" content="Деликатная стоматология в Серпухове. Эстетика. Результат. Первичный осмотр бесплатно.">
+<title>Dental Club Серпухов — Стоматология | Лечение зубов, виниры, имплантация</title>
+<meta name="description" content="Стоматологическая клиника Dental Club в Серпухове. Лечение кариеса, виниры E-max, имплантация, отбеливание Zoom. Первичный осмотр бесплатно. Запись онлайн.">
+<meta name="keywords" content="стоматология Серпухов, лечение зубов Серпухов, виниры Серпухов, имплантация зубов, отбеливание зубов, Dental Club">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://dental-club-serpukhov.ru/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Dental Club Серпухов — Деликатная стоматология">
+<meta property="og:description" content="Лечение зубов, виниры, имплантация в Серпухове. Первичный осмотр бесплатно. Без боли и очередей.">
+<meta property="og:image" content="hero.png">
+<meta property="og:url" content="https://dental-club-serpukhov.ru/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Schema.org LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Dental Club Серпухов",
+  "description": "Деликатная стоматология в Серпухове. Лечение кариеса, виниры, имплантация, отбеливание.",
+  "url": "https://dental-club-serpukhov.ru/",
+  "telephone": "+74967000000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Советская, 15",
+    "addressLocality": "Серпухов",
+    "addressRegion": "Московская область",
+    "addressCountry": "RU"
+  },
+  "openingHours": ["Mo-Fr 09:00-20:00", "Sa 10:00-18:00"],
+  "priceRange": "₽₽",
+  "image": "hero.png"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -13,14 +48,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --white:     #FFFFFF;
-  --off-white: #FAFAF9;
-  --beige:     #F5F0EB;
-  --text:      #1A1A1A;
-  --text-soft: #6B6B6B;
-  --accent:    #B8A898;
-  --line:      #E8E4E0;
-  --dark:      #1C1C1E;
+  --white:        #FFFFFF;
+  --off-white:    #FAFAF9;
+  --beige:        #F5F0EB;
+  --text:         #111111;       /* было #1A1A1A — чуть темнее */
+  --text-soft:    #525252;       /* было #6B6B6B — +контраст 5.9:1 */
+  --accent:       #B8A898;       /* декоративные линии, рамки */
+  --accent-label: #7A6855;       /* текстовые лейблы — читаемо */
+  --line:         #E2DDD8;       /* чуть темнее линии */
+  --dark:         #141416;       /* глубже тёмный фон */
 
   --font-h: 'Cormorant Garamond', serif;
   --font-b: 'DM Sans', sans-serif;
@@ -127,7 +163,7 @@ body {
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-label);
 }
 
 nav {
@@ -212,7 +248,7 @@ nav a:hover { color: var(--text); }
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-label);
   margin-bottom: 40px;
   display: block;
 }
@@ -229,7 +265,7 @@ nav a:hover { color: var(--text); }
 
 .hero-sub {
   font-family: var(--font-b);
-  font-size: 16px;
+  font-size: 17px;
   color: var(--text-soft);
   line-height: 1.8;
   margin-bottom: 48px;
@@ -255,7 +291,8 @@ nav a:hover { color: var(--text); }
   align-items: center;
   gap: 16px;
   font-size: 14px;
-  color: var(--text-soft);
+  font-weight: 500;
+  color: var(--text);
   line-height: 1.5;
 }
 .hero-fact::before {
@@ -302,14 +339,15 @@ nav a:hover { color: var(--text); }
 .section-label {
   font-family: var(--font-b);
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-label);
 }
 .section-head h2 {
   font-family: var(--font-h);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 300;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 400;
   color: var(--text);
   letter-spacing: -0.01em;
 }
@@ -337,12 +375,13 @@ nav a:hover { color: var(--text); }
 .acc-num {
   font-family: var(--font-b);
   font-size: 12px;
-  color: var(--accent);
+  font-weight: 500;
+  color: var(--accent-label);
   letter-spacing: 0.05em;
 }
 .acc-name {
   font-family: var(--font-h);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 400;
   color: var(--text);
   letter-spacing: 0.01em;
@@ -350,6 +389,7 @@ nav a:hover { color: var(--text); }
 .acc-price {
   font-family: var(--font-b);
   font-size: 14px;
+  font-weight: 500;
   color: var(--text-soft);
   text-align: right;
   white-space: nowrap;
@@ -421,7 +461,8 @@ nav a:hover { color: var(--text); }
 .quote-author {
   font-family: var(--font-b);
   font-size: 13px;
-  color: var(--accent);
+  font-weight: 500;
+  color: var(--accent-label);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 64px;
@@ -436,8 +477,9 @@ nav a:hover { color: var(--text); }
 }
 .quote-fact {
   font-family: var(--font-b);
-  font-size: 14px;
-  color: var(--text-soft);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
   padding: 0 40px;
   letter-spacing: 0.03em;
 }
@@ -501,17 +543,20 @@ nav a:hover { color: var(--text); }
   font-weight: 500;
   color: var(--text);
   margin-bottom: 4px;
+  text-align: center;
 }
 .doctor-role {
   font-family: var(--font-b);
   font-size: 13px;
   color: var(--text-soft);
   margin-bottom: 2px;
+  text-align: center;
 }
 .doctor-exp {
   font-family: var(--font-b);
   font-size: 13px;
-  color: var(--accent);
+  color: var(--accent-label);
+  text-align: center;
 }
 
 /* ── FORM ───────────────────────────────────────────── */
@@ -556,9 +601,10 @@ nav a:hover { color: var(--text); }
 .form-contact-row:last-child { border-bottom: none; }
 .form-contact-label {
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-label);
 }
 .form-contact-val {
   font-size: 15px;
@@ -622,7 +668,7 @@ nav a:hover { color: var(--text); }
 .form-note {
   margin-top: 16px;
   font-size: 12px;
-  color: var(--accent);
+  color: var(--text-soft);
   letter-spacing: 0.04em;
   line-height: 1.6;
 }
@@ -633,9 +679,10 @@ nav a:hover { color: var(--text); }
 }
 .form-success-label {
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-label);
   margin-bottom: 16px;
   display: block;
 }
@@ -675,11 +722,11 @@ nav a:hover { color: var(--text); }
 
 .review-quote {
   font-family: var(--font-h);
-  font-size: 22px;
-  font-weight: 300;
+  font-size: 23px;
+  font-weight: 400;
   font-style: italic;
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.6;
   letter-spacing: 0.01em;
   flex: 1;
 }
@@ -688,6 +735,7 @@ nav a:hover { color: var(--text); }
 .review-name {
   font-family: var(--font-b);
   font-size: 13px;
+  font-weight: 500;
   color: var(--text-soft);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -753,16 +801,17 @@ nav a:hover { color: var(--text); }
 .footer-logo-city {
   font-family: var(--font-b);
   font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #C8B8A8;
   display: block;
   margin-bottom: 20px;
 }
 .footer-tagline {
   font-size: 14px;
-  color: rgba(255,255,255,0.35);
-  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
   margin-bottom: 28px;
 }
 
@@ -770,9 +819,10 @@ nav a:hover { color: var(--text); }
 .footer-social {
   font-family: var(--font-b);
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -781,22 +831,23 @@ nav a:hover { color: var(--text); }
 .footer-col h4 {
   font-family: var(--font-b);
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #C8B8A8;
   margin-bottom: 24px;
 }
 .footer-links { display: flex; flex-direction: column; gap: 12px; }
 .footer-links a,
 .footer-links span {
   font-size: 14px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.62);
   text-decoration: none;
   transition: color 0.2s;
   line-height: 1.5;
   display: block;
 }
-.footer-links a:hover { color: rgba(255,255,255,0.85); }
+.footer-links a:hover { color: rgba(255,255,255,0.95); }
 
 .footer-bottom {
   display: flex;
@@ -807,12 +858,12 @@ nav a:hover { color: var(--text); }
 }
 .footer-copy {
   font-size: 12px;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.4);
   letter-spacing: 0.04em;
 }
 .footer-disclaimer {
   font-size: 11px;
-  color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.35);
   text-align: right;
 }
 
@@ -923,11 +974,11 @@ nav a:hover { color: var(--text); }
 <section id="hero">
   <div class="hero-text container-left fade-in">
     <div style="max-width:1200px; margin:0 auto; padding:0 48px 0 48px;">
-      <span class="hero-label">Деликатная стоматология</span>
-      <h1>Здоровье<br>которое<br>заметно</h1>
+      <span class="hero-label">Стоматология · Серпухов</span>
+      <h1>Здоровье, которое<br>заметно</h1>
       <p class="hero-sub">
-        Стоматология в Серпухове.<br>
-        Деликатное лечение. Эстетика. Результат.
+        Деликатная стоматология в Серпухове.<br>
+        Лечение без боли. Эстетика. Результат.
       </p>
       <div class="hero-actions">
         <a href="#form-section" class="btn">Записаться на осмотр</a>
@@ -942,47 +993,11 @@ nav a:hover { color: var(--text); }
   </div>
 
   <div class="hero-visual">
-    <div class="hero-svg-wrap">
-      <!-- Architectural tooth illustration -->
-      <svg viewBox="0 0 400 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Main tooth outline -->
-        <path d="M200 40 C140 40 100 70 90 110 C80 150 78 180 72 220 C66 260 60 300 64 340 C68 380 88 420 120 430 C140 436 158 420 168 400 C178 380 186 360 200 360 C214 360 222 380 232 400 C242 420 260 436 280 430 C312 420 332 380 336 340 C340 300 334 260 328 220 C322 180 320 150 310 110 C300 70 260 40 200 40Z" stroke="#E8E4E0" stroke-width="1" fill="none"/>
-        <!-- Root lines -->
-        <path d="M168 400 C160 430 150 454 144 470" stroke="#E8E4E0" stroke-width="0.8"/>
-        <path d="M232 400 C240 430 250 454 256 470" stroke="#E8E4E0" stroke-width="0.8"/>
-        <path d="M200 360 L200 470" stroke="#E8E4E0" stroke-width="0.8"/>
-        <!-- Crown anatomy lines -->
-        <path d="M120 120 C140 110 160 105 200 105 C240 105 260 110 280 120" stroke="#E8E4E0" stroke-width="0.8"/>
-        <path d="M100 160 C130 148 165 142 200 142 C235 142 270 148 300 160" stroke="#E8E4E0" stroke-width="0.8"/>
-        <!-- Cusps -->
-        <path d="M140 88 C148 72 158 60 168 52" stroke="#E8E4E0" stroke-width="0.8"/>
-        <path d="M260 88 C252 72 242 60 232 52" stroke="#E8E4E0" stroke-width="0.8"/>
-        <path d="M200 70 L200 40" stroke="#E8E4E0" stroke-width="0.8"/>
-        <!-- Detail lines -->
-        <path d="M155 200 C165 190 180 185 200 185 C220 185 235 190 245 200" stroke="#E8E4E0" stroke-width="0.6"/>
-        <path d="M145 240 C162 228 180 222 200 222 C220 222 238 228 255 240" stroke="#E8E4E0" stroke-width="0.6"/>
-        <!-- Dimension markers -->
-        <line x1="55" y1="40" x2="55" y2="360" stroke="#E8E4E0" stroke-width="0.5" stroke-dasharray="2 4"/>
-        <line x1="48" y1="40" x2="62" y2="40" stroke="#E8E4E0" stroke-width="0.5"/>
-        <line x1="48" y1="360" x2="62" y2="360" stroke="#E8E4E0" stroke-width="0.5"/>
-        <line x1="80" y1="460" x2="320" y2="460" stroke="#E8E4E0" stroke-width="0.5" stroke-dasharray="2 4"/>
-        <line x1="80" y1="453" x2="80" y2="467" stroke="#E8E4E0" stroke-width="0.5"/>
-        <line x1="320" y1="453" x2="320" y2="467" stroke="#E8E4E0" stroke-width="0.5"/>
-        <!-- Small cross marks -->
-        <g stroke="#E8E4E0" stroke-width="0.5">
-          <line x1="197" y1="40" x2="203" y2="40"/>
-          <line x1="200" y1="37" x2="200" y2="43"/>
-          <line x1="197" y1="185" x2="203" y2="185"/>
-          <line x1="200" y1="182" x2="200" y2="188"/>
-          <line x1="197" y1="360" x2="203" y2="360"/>
-          <line x1="200" y1="357" x2="200" y2="363"/>
-        </g>
-        <!-- Labels -->
-        <text x="40" y="205" fill="#B8A898" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1" transform="rotate(-90 40 205)" text-anchor="middle">CROWN</text>
-        <text x="200" y="476" fill="#B8A898" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1" text-anchor="middle">WIDTH</text>
-        <text x="72" y="200" fill="#B8A898" font-family="DM Sans, sans-serif" font-size="8" letter-spacing="1" text-anchor="middle" transform="rotate(-90 72 200)">HEIGHT</text>
-      </svg>
-    </div>
+    <img
+      src="hero.png"
+      alt="Dental Club — интерьер клиники"
+      style="width:100%; height:100%; object-fit:cover; object-position:30% center; display:block;"
+    />
   </div>
 </section>
 
@@ -1153,6 +1168,12 @@ nav a:hover { color: var(--text); }
   </div>
 </section>
 
+<!-- ─── CLINIC PHOTO ──────────────────────────────── -->
+<div style="width:100%; height:520px; overflow:hidden; position:relative;">
+  <img src="clinic.png" alt="Интерьер клиники Dental Club — ресепшн" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;"/>
+  <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+</div>
+
 <!-- ─── DOCTORS ────────────────────────────────────── -->
 <section id="doctors">
   <div class="container">
@@ -1165,7 +1186,7 @@ nav a:hover { color: var(--text); }
     <div class="doctors-grid fade-in">
       <div class="doctor-card">
         <div class="doctor-portrait">
-          <span class="doctor-initials">ИЕ</span>
+          <img src="doc1.png" alt="Иванова Елена Сергеевна" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
         </div>
         <div class="doctor-name">Иванова Елена Сергеевна</div>
         <div class="doctor-role">Стоматолог-терапевт</div>
@@ -1173,7 +1194,7 @@ nav a:hover { color: var(--text); }
       </div>
       <div class="doctor-card">
         <div class="doctor-portrait">
-          <span class="doctor-initials">ПА</span>
+          <img src="doc2.png" alt="Петров Андрей Викторович" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
         </div>
         <div class="doctor-name">Петров Андрей Викторович</div>
         <div class="doctor-role">Хирург-имплантолог</div>
@@ -1181,7 +1202,7 @@ nav a:hover { color: var(--text); }
       </div>
       <div class="doctor-card">
         <div class="doctor-portrait">
-          <span class="doctor-initials">СО</span>
+          <img src="doc3.png" alt="Смирнова Ольга Николаевна" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
         </div>
         <div class="doctor-name">Смирнова Ольга Николаевна</div>
         <div class="doctor-role">Ортодонт</div>
@@ -1292,6 +1313,32 @@ nav a:hover { color: var(--text); }
   </div>
 </section>
 
+<!-- ─── BEFORE / AFTER ────────────────────────────── -->
+<section id="before-after" style="padding:120px 0; background:var(--beige); border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head fade-in" style="margin-bottom:64px;">
+      <div>
+        <div class="section-label" style="margin-bottom:12px;">Результаты работ</div>
+        <h2>До и после</h2>
+      </div>
+    </div>
+    <div class="fade-in" style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div style="position:relative; overflow:hidden; background:var(--white); border:1px solid var(--line);">
+        <img src="smile1.png" alt="Результат — до и после #1" style="width:100%; display:block; object-fit:cover;"/>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 20px; background:linear-gradient(transparent, rgba(0,0,0,0.45));">
+          <span style="font-family:var(--font-b); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Виниры · E-max</span>
+        </div>
+      </div>
+      <div style="position:relative; overflow:hidden; background:var(--white); border:1px solid var(--line);">
+        <img src="smile.png" alt="Результат — до и после #2" style="width:100%; display:block; object-fit:cover;"/>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 20px; background:linear-gradient(transparent, rgba(0,0,0,0.45));">
+          <span style="font-family:var(--font-b); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Отбеливание · Zoom 4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── PROMO STRIP ───────────────────────────────── -->
 <section id="promo">
   <div class="container">
@@ -1341,7 +1388,7 @@ nav a:hover { color: var(--text); }
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2024 Dental Club Серпухов</span>
+      <span class="footer-copy">© 2025 Dental Club Серпухов</span>
       <span class="footer-disclaimer">* Instagram запрещён на территории Российской Федерации</span>
     </div>
   </div>
