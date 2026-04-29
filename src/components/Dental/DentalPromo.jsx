@@ -90,7 +90,7 @@ function Label({ children }) {
 }
 
 // ── Reveal wrapper ────────────────────────────────────────────────
-function Reveal({ children, delay = 0, y = 40 }) {
+function Reveal({ children, delay = 0, y = 40, fullHeight = false }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 })
   return (
     <motion.div
@@ -98,6 +98,7 @@ function Reveal({ children, delay = 0, y = 40 }) {
       initial={{ opacity: 0, y }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={fullHeight ? { height: '100%' } : undefined}
     >
       {children}
     </motion.div>
@@ -157,19 +158,19 @@ export default function DentalPromo() {
   const TG = 'https://t.me/korm_marketing'
 
   const PAINS = [
+    'Хочется новых пациентов на дорогие услуги (импланты, виниры, ортодонтия) — но обычная реклама их не приводит. А именно эти услуги дают основную выручку',
     'Карточка в Яндекс.Картах есть, но давно не обновлялась — фото старые, услуг с ценами нет, истории не публикуются',
     'Сайта нет вообще, или есть, но устаревший. Пациент заходит и сразу закрывает',
     'Отзывы появляются медленно, негативные не отрабатываются',
     'Конкурентов в Серпухове 30+, и все они рядом — пациент сравнивает напрямую',
     'Времени заниматься онлайн-присутствием нет. У администратора другие задачи, у врача — пациенты',
-    'Платная подписка в Яндекс.Бизнесе подключена, но карточка не работает — деньги уходят впустую',
   ]
 
   const MAPS_LIST = [
     'Заполняю все поля карточки правильно: услуги, цены, фото, описание, режим работы',
-    'Подбираю оптимальный платный тариф Яндекс.Бизнес под ваш бюджет',
+    'Подбираю оптимальный платный тариф Яндекс.Бизнес под ваш бюджет (при необходимости)',
     'Ставлю систему получения реальных отзывов от пациентов (QR-коды, скрипты администратору)',
-    'Отвечаю на каждый отзыв — позитив и негатив. Негатив отрабатываю профессионально',
+    'Повышаю рейтинг компании',
     'Веду стабильный контент-план: истории, акции, новости клиники',
     'Слежу за актуальностью: фото, цены, часы работы',
   ]
@@ -177,7 +178,7 @@ export default function DentalPromo() {
   const SITE_LIST = [
     'Делаю аккуратный, презентабельный сайт под медицинскую сферу',
     'Наполняю контентом: блоки услуг, страницы врачей, прайс, лицензии, акции',
-    'Подключаю онлайн-запись прямо с сайта',
+    'Формирую необходимый контент, если у вас его недостаточно. Прорабатываем блоки знакомства с докторами и услугами',
     'Устанавливаю Яндекс.Метрику и аналитику',
     'Привязываю ваш домен',
     'Даю подробную инструкцию: как менять контент самостоятельно',
@@ -186,9 +187,9 @@ export default function DentalPromo() {
 
   const PROCESS = [
     { num: '01', title: 'Знакомство', time: '15 минут', items: ['Звонок или встреча у вас в клинике', 'Я уже изучил вашу клинику онлайн — приду с конкретным планом', 'Вы решаете брать или нет — без давления'] },
-    { num: '02', title: 'Договор и старт', time: '1 день', items: ['Подписываем договор как самозанятый', 'Чек, документы, всё официально', 'Поэтапная оплата по результату'] },
+    { num: '02', title: 'Договор и старт', time: '1 день', items: ['Подписываем договор, где прописываем все работы и гарантии', 'Чек, документы', 'Поэтапная оплата по результату'] },
     { num: '03', title: 'Работа', time: '1–4 недели', items: ['Карточка — 3-5 дней', 'Сайт — от 1 недели', 'Регулярные отчёты, согласование на каждом этапе'] },
-    { num: '04', title: 'Сопровождение', time: 'постоянно', items: ['2 месяца гарантии на сайт', 'Ежемесячное ведение карточки', 'Поддержка по любым вопросам'] },
+    { num: '04', title: 'Сопровождение', time: '2 мес гарантии', items: ['2 месяца гарантии на сайт', 'Ежемесячное ведение карточки', 'Поддержка по любым вопросам'] },
   ]
 
   const FAQS = [
@@ -358,23 +359,46 @@ export default function DentalPromo() {
             </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+          {/* Quote-style anti-objection block */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
             style={{
-              fontFamily: 'Inter,sans-serif', fontSize: 'clamp(16px, 2vw, 20px)',
-              color: '#A0A0A0', lineHeight: 1.6, maxWidth: '560px', margin: '0 0 40px',
+              borderLeft: '2px solid transparent',
+              borderImage: 'linear-gradient(180deg, #6366F1, #06B6D4) 1',
+              paddingLeft: 'clamp(16px, 2vw, 24px)',
+              maxWidth: '600px',
+              marginBottom: '40px',
             }}
           >
-            Прокачаю карточку Яндекс.Карт и сделаю сайт клиники, которому пациент доверяет.{' '}
-            <span style={{ color: '#FFFFFF' }}>Я в Серпухове, приеду лично.</span>
-          </motion.p>
+            <p style={{
+              fontFamily: "'Space Grotesk',sans-serif",
+              fontSize: 'clamp(17px, 2.4vw, 22px)',
+              fontWeight: 600, color: '#FFFFFF',
+              lineHeight: 1.4, margin: '0 0 14px',
+              letterSpacing: '-0.01em',
+            }}>
+              Постоянные клиенты дают <span style={{ color: '#A0A0A0' }}>стабильность.</span><br />
+              Новые — <span style={{
+                background: 'linear-gradient(135deg, #6366F1, #06B6D4)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              }}>развитие.</span><br />
+              Одно не заменяет другое — это работает вместе.
+            </p>
+            <p style={{
+              fontFamily: 'Inter,sans-serif',
+              fontSize: 'clamp(13px, 1.7vw, 15px)',
+              color: '#7A7A7A', lineHeight: 1.6, margin: 0,
+            }}>
+              Сарафан — это потолок. Яндекс Карты и сайт — это рост.
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
             style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', marginBottom: '20px' }}
           >
             <a href="#cta" className="dp-btn-primary"
@@ -395,13 +419,13 @@ export default function DentalPromo() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}
             style={{
               fontFamily: "'JetBrains Mono',monospace", fontSize: '12px',
               color: '#4A4A4A', marginBottom: '0',
             }}
           >
-            Без предоплаты · По договору
+            По договору · С гарантией
           </motion.p>
         </div>
 
@@ -440,8 +464,8 @@ export default function DentalPromo() {
                 color: '#6366F1',
               },
               {
-                num: '4.7★',
-                label: 'средний рейтинг клиник, которых выбирают',
+                num: 'от 4,7★',
+                label: 'рейтинг, которому доверяют',
                 desc: 'При рейтинге ниже 4.5 пациент уходит к конкуренту. Один негативный отзыв обрушивает то, что копилось годами.',
                 color: '#8B5CF6',
               },
@@ -538,8 +562,8 @@ export default function DentalPromo() {
 
           <div className="dp-two-col">
             {/* Card A: Yandex Maps */}
-            <Reveal delay={0}>
-              <div className="dp-card" style={{ height: '100%', borderColor: 'rgba(99,102,241,0.3)' }}>
+            <Reveal delay={0} fullHeight>
+              <div className="dp-card" style={{ height: '100%', borderColor: 'rgba(99,102,241,0.3)', display: 'flex', flexDirection: 'column' }}>
                 <div style={{
                   display: 'inline-flex', padding: '8px 14px', borderRadius: '100px',
                   background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)',
@@ -551,9 +575,9 @@ export default function DentalPromo() {
                   Карточка под ключ + продвижение
                 </h3>
                 <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#6366F1', margin: '0 0 24px' }}>
-                  Чтобы вас находили и выбирали в первой пятёрке Серпухова
+                  Поднимаем карточку в поиске выше и делаем заметнее
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px', flex: 1 }}>
                   {MAPS_LIST.map((item, i) => (
                     <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                       <div style={{ marginTop: '2px', flexShrink: 0 }}><IconCheck /></div>
@@ -561,7 +585,7 @@ export default function DentalPromo() {
                     </div>
                   ))}
                 </div>
-                <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px', marginTop: 'auto' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Оформление под ключ</span>
                     <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '18px', fontWeight: 700, color: '#FFFFFF' }}>5 000 ₽</span>
@@ -575,8 +599,8 @@ export default function DentalPromo() {
             </Reveal>
 
             {/* Card B: Site */}
-            <Reveal delay={0.1}>
-              <div className="dp-card" style={{ height: '100%', borderColor: 'rgba(6,182,212,0.3)' }}>
+            <Reveal delay={0.1} fullHeight>
+              <div className="dp-card" style={{ height: '100%', borderColor: 'rgba(6,182,212,0.3)', display: 'flex', flexDirection: 'column' }}>
                 <div style={{
                   display: 'inline-flex', padding: '8px 14px', borderRadius: '100px',
                   background: 'rgba(6,182,212,0.1)', border: '1px solid rgba(6,182,212,0.2)',
@@ -590,7 +614,7 @@ export default function DentalPromo() {
                 <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#06B6D4', margin: '0 0 24px' }}>
                   Который пациенту понятен, а вам легко администрировать
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px', flex: 1 }}>
                   {SITE_LIST.map((item, i) => (
                     <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                       <div style={{ marginTop: '2px', flexShrink: 0 }}>
@@ -600,7 +624,7 @@ export default function DentalPromo() {
                     </div>
                   ))}
                 </div>
-                <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px', marginTop: 'auto' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Сайт под ключ </span>
@@ -612,7 +636,6 @@ export default function DentalPromo() {
                     <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Абонент. сопровождение</span>
                     <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '18px', fontWeight: 700, color: '#06B6D4' }}>5 000 ₽/мес</span>
                   </div>
-                  <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '12px', color: '#6366F1', margin: '4px 0 0' }}>⚡ от 1 недели</p>
                 </div>
               </div>
             </Reveal>
@@ -730,8 +753,9 @@ export default function DentalPromo() {
                       fontSize: 'clamp(34px, 5vw, 48px)', fontWeight: 700,
                       background: 'linear-gradient(135deg, #6366F1, #06B6D4)',
                       WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                      margin: 0, lineHeight: 1,
+                      margin: '0 0 6px', lineHeight: 1,
                     }}>34 000 ₽</p>
+                    <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#A0A0A0', margin: 0 }}>быстрый старт</p>
                   </div>
 
                   <div style={{ width: '60%', height: '1px', background: '#1E1E1E' }} />
@@ -747,7 +771,7 @@ export default function DentalPromo() {
                   </div>
 
                   <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: '11px', color: '#6366F1', margin: 0 }}>
-                    старт на следующий день
+                    стабильный рост и продвижение
                   </p>
 
                   <a href="#cta" className="dp-btn-primary" style={{ width: '100%', fontSize: '15px' }}>
@@ -785,16 +809,16 @@ export default function DentalPromo() {
               {
                 icon: '🔧',
                 title: 'Доработки и точечные задачи',
-                desc: 'Telegram-бот, дополнительные блоки, интеграции, статьи',
+                desc: 'Telegram-бот, правки на сайте, настройка рекламы, настройка телефонии, аналитика, построение продаж и скрипты',
                 price: '5 000 ₽/мес',
               },
             ].map((s, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className="dp-card">
+              <Reveal key={i} delay={i * 0.1} fullHeight>
+                <div className="dp-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ fontSize: '28px', marginBottom: '14px' }}>{s.icon}</div>
                   <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '17px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px' }}>{s.title}</h3>
-                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#6A6A6A', lineHeight: 1.6, margin: '0 0 16px' }}>{s.desc}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#6A6A6A', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>{s.desc}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 'auto' }}>
                     <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '18px', fontWeight: 700, color: '#6366F1' }}>{s.price}</span>
                     {s.old && <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#3A3A3A', textDecoration: 'line-through' }}>{s.old}</span>}
                   </div>
@@ -881,8 +905,7 @@ export default function DentalPromo() {
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
                   {[
-                    'Вывел премиум-проект в ТОП-10 Москвы за 3 месяца в высококонкурентной нише',
-                    'Веду маркетинг для своего премиум-проекта в Серпухове — знаю как работать с премиум-сегментом',
+                    'Вывел проект в ТОП-10 Москвы за 3 месяца в высококонкурентной нише',
                     'Сделал десятки сайтов и рекламных кампаний для малого бизнеса МО',
                     'Доверяют как локальные клиники, так и крупные проекты в Москве',
                   ].map((item, i) => (
@@ -968,10 +991,10 @@ export default function DentalPromo() {
                 }}>ВНИМАНИЕ</span>
               </div>
 
-              <h2 className="dp-h2" style={{ marginBottom: '20px', maxWidth: '760px' }}>
+              <h2 className="dp-h2" style={{ marginBottom: '20px', maxWidth: '820px' }}>
                 В работу беру{' '}
                 <span style={{ color: '#EF4444', position: 'relative', display: 'inline-block' }}>
-                  только 3 стоматологии
+                  только одну стоматологию
                   <svg viewBox="0 0 200 8" style={{
                     position: 'absolute', left: 0, bottom: '-6px',
                     width: '100%', height: '6px',
@@ -984,35 +1007,41 @@ export default function DentalPromo() {
 
               <p style={{
                 fontFamily: 'Inter,sans-serif', fontSize: 'clamp(15px, 2vw, 17px)',
-                color: '#C0C0C0', lineHeight: 1.7, marginBottom: '28px', maxWidth: '700px',
+                color: '#C0C0C0', lineHeight: 1.7, marginBottom: '28px', maxWidth: '720px',
               }}>
-                Я работаю один, без команды менеджеров. Чтобы давать клиникам реальный результат — а не «отчёты ради отчётов» — беру в работу <span style={{ color: '#FFFFFF', fontWeight: 600 }}>только 3 проекта</span> в городе одновременно. Это принципиальная позиция.
+                Беру не более <span style={{ color: '#FFFFFF', fontWeight: 600 }}>3 проектов одновременно</span> — и всегда из разных сфер. Это значит: <span style={{ color: '#FFFFFF', fontWeight: 600 }}>только одна клиника в работе</span>. Никакой работы с вашими конкурентами параллельно — только вы и фокус на ваш результат.
               </p>
 
               <div style={{
-                display: 'flex', flexWrap: 'wrap', gap: '24px',
+                display: 'flex', flexWrap: 'wrap', gap: '12px',
                 marginBottom: '28px', alignItems: 'center',
               }}>
-                {[
-                  { label: 'Заняты', count: 1, color: '#EF4444' },
-                  { label: 'Свободно', count: 2, color: '#10B981' },
-                ].map((s, i) => (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'center', gap: '10px',
-                    padding: '12px 18px',
-                    background: '#0A0A0A',
-                    border: `1px solid ${s.color}33`,
-                    borderRadius: '12px',
-                  }}>
-                    <span style={{
-                      width: '8px', height: '8px', borderRadius: '50%',
-                      background: s.color, flexShrink: 0,
-                    }} />
-                    <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>{s.label}:</span>
-                    <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '20px', fontWeight: 700, color: s.color }}>{s.count}</span>
-                    <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#6A6A6A' }}>из 3</span>
-                  </div>
-                ))}
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: '12px',
+                  padding: '14px 20px',
+                  background: 'rgba(16,185,129,0.06)',
+                  border: '1px solid rgba(16,185,129,0.3)',
+                  borderRadius: '12px',
+                }}>
+                  <span style={{
+                    width: '10px', height: '10px', borderRadius: '50%',
+                    background: '#10B981', flexShrink: 0,
+                    boxShadow: '0 0 12px rgba(16,185,129,0.6)',
+                    animation: 'urgPulse 1.6s ease-in-out infinite',
+                  }} />
+                  <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Слот для стоматологии:</span>
+                  <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '15px', fontWeight: 700, color: '#10B981', textTransform: 'uppercase', letterSpacing: '0.04em' }}>свободен</span>
+                </div>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                  padding: '14px 20px',
+                  background: '#0A0A0A',
+                  border: '1px solid #1E1E1E',
+                  borderRadius: '12px',
+                }}>
+                  <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>В работе:</span>
+                  <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '15px', fontWeight: 600, color: '#C0C0C0' }}>2 проекта в других нишах</span>
+                </div>
               </div>
 
               <div className="dp-urg-cta">
