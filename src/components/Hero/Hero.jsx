@@ -142,7 +142,7 @@ function ParticleGrid() {
 // ─────────────────────────────────────────────────────────────────
 const STATS = [
   { value: '27', label: 'проектов в портфолио' },
-  { value: '3+', label: 'года в digital' },
+  { value: '5 лет', label: 'в digital' },
   { value: 'МО', label: 'Серпухов и область' },
 ]
 

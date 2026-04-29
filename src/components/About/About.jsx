@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 
 const STATS = [
-  { value: '3+',  label: 'года в digital' },
+  { value: '5 лет',  label: 'в digital' },
   { value: '27',  label: 'проектов'       },
   { value: '24/7', label: 'на связи'      },
 ]

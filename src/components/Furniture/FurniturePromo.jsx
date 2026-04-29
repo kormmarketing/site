@@ -123,7 +123,8 @@ export default function FurniturePromo() {
   const [formSent, setFormSent] = useState(false)
   const [formBusy, setFormBusy] = useState(false)
   const [formError, setFormError] = useState('')
-  const [form, setForm] = useState({ name: '', contact: '' })
+  const [form, setForm] = useState({ name: '', contact: '', website: '' })
+  const [formAgree, setFormAgree] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [lightbox, setLightbox] = useState(null)
 
@@ -146,20 +147,23 @@ export default function FurniturePromo() {
     setFormError('')
     if (!form.name.trim()) { setFormError('Введите название компании'); return }
     if (!form.contact.trim()) { setFormError('Введите телефон или Telegram'); return }
+    if (!formAgree) { setFormError('Подтвердите согласие на обработку персональных данных'); return }
+    if (form.website) { setFormSent(true); return } // honeypot
     setFormBusy(true)
-    const TOKEN = '8785875286:AAFx1vAFRe2rGt4HEcb6fQlhQlVESrVZT7Q'
-    const CHAT_ID = '413912803'
-    const text = `🪑 *Заявка со страницы furniture-promo2026*\n\n🏢 *Компания:* ${form.name}\n📱 *Контакт:* ${form.contact}`
     try {
-      const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      const res = await fetch('/api/send.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' }),
+        body: JSON.stringify({
+          source: 'furniture',
+          fields: { name: form.name, contact: form.contact },
+        }),
       })
-      if (!res.ok) throw new Error()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) throw new Error(data.error)
       setFormSent(true)
-    } catch {
-      setFormError('Ошибка. Напишите напрямую: @korm_marketing')
+    } catch (err) {
+      setFormError(err.message || 'Ошибка. Напишите напрямую: @korm_marketing')
     } finally {
       setFormBusy(false)
     }
@@ -174,7 +178,7 @@ export default function FurniturePromo() {
     'Карточка в Яндекс.Картах есть, но давно не обновлялась — фото старые, услуг с ценами нет, истории не публикуются, проектов нет',
     'Сайта нет вообще, или есть, но устаревший. Без портфолио клиент не доверит дорогую кухню или гардеробную. На фото в WhatsApp серьёзный заказ не продать',
     'Отзывы появляются медленно, негативные не отрабатываются',
-    'Конкурентов в Серпухове 30+, плюс федеральные сети — Шатура, Hoff, Askona, Ormatek — забивают выдачу. Клиент сравнивает напрямую, и без онлайн-присутствия вы теряетесь в шуме',
+    'На рынке высокая конкуренция: десятки локальных мастерских и крупные федеральные сети с большими маркетинговыми бюджетами. Без онлайн-присутствия локальной компании сложно конкурировать в поиске',
   ]
 
   const MAPS_LIST = [
@@ -801,7 +805,7 @@ export default function FurniturePromo() {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <div>
-                      <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Продвижение </span>
+                      <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: '#A0A0A0' }}>Оформление + продвижение </span>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#4A4A4A', textDecoration: 'line-through' }}>19 000 ₽</span>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '11px', color: '#6366F1', display: 'block', marginTop: '2px' }}>*Акция до 31.05.2026</span>
                     </div>
@@ -1376,6 +1380,13 @@ export default function FurniturePromo() {
                   <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '20px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 8px', textAlign: 'left' }}>
                     Оставить заявку
                   </h3>
+                  <input
+                    type="text" name="website" tabIndex="-1" autoComplete="off"
+                    value={form.website || ''}
+                    onChange={e => setForm({ ...form, website: e.target.value })}
+                    style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+                    aria-hidden="true"
+                  />
                   {[
                     { name: 'name', placeholder: 'Название компании' },
                     { name: 'contact', placeholder: 'Телефон или Telegram' },
@@ -1399,6 +1410,24 @@ export default function FurniturePromo() {
                   {formError && (
                     <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#EF4444', margin: 0 }}>{formError}</p>
                   )}
+                  <label style={{
+                    display: 'flex', alignItems: 'flex-start', gap: '10px',
+                    marginTop: '4px', cursor: 'pointer', textAlign: 'left',
+                    fontFamily: 'Inter,sans-serif', fontSize: '12px',
+                    color: '#A0A0A0', lineHeight: 1.5,
+                  }}>
+                    <input
+                      type="checkbox" checked={formAgree}
+                      onChange={(e) => setFormAgree(e.target.checked)}
+                      style={{ width: '16px', height: '16px', accentColor: '#6366F1', flexShrink: 0, marginTop: '2px', cursor: 'pointer' }}
+                    />
+                    <span>
+                      Я соглашаюсь с{' '}
+                      <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: '#6366F1', textDecoration: 'none' }}>
+                        политикой конфиденциальности
+                      </a>{' '}и обработкой персональных данных
+                    </span>
+                  </label>
                   <button type="submit" disabled={formBusy} className="dp-btn-primary"
                     style={{ width: '100%', padding: '16px', fontSize: '16px', marginTop: '4px', opacity: formBusy ? 0.7 : 1 }}>
                     {formBusy ? 'Отправляю...' : 'Свяжитесь со мной →'}

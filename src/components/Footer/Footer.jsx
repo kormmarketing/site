@@ -163,12 +163,23 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── Legal info ──────────────────────────────────── */}
+        <div style={{
+          padding: '20px 0 8px',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '12px',
+          color: '#5A5A5A',
+          lineHeight: 1.6,
+        }}>
+          Иванов Роман · Самозанятый · ИНН 613804569363 · г. Серпухов, Московская область
+        </div>
+
         {/* ── Bottom bar ──────────────────────────────────── */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '24px 0',
+          padding: '16px 0 24px',
           flexWrap: 'wrap',
           gap: '8px',
         }}>

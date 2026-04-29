@@ -30,10 +30,11 @@ const onBlur = (e) => {
 
 // ── Component ───────────────────────────────────────────────────────
 export default function Contact() {
-  const [form, setForm]   = useState({ name: '', contact: '', task: '', budget: '', message: '' })
+  const [form, setForm]   = useState({ name: '', contact: '', task: '', budget: '', message: '', website: '' })
   const [sent, setSent]   = useState(false)
   const [busy, setBusy]   = useState(false)
   const [error, setError] = useState('')
+  const [agree, setAgree] = useState(false)
 
   const labelRef      = useRef(null)
   const titleInnerRef = useRef(null)
@@ -53,10 +54,10 @@ export default function Contact() {
     setError('')
     if (!form.name.trim()) { setError('Введите имя'); return }
     if (!form.contact.trim()) { setError('Введите телефон или Telegram'); return }
+    if (!agree) { setError('Подтвердите согласие на обработку персональных данных'); return }
+    // Honeypot
+    if (form.website) { setSent(true); return }
     setBusy(true)
-
-    const TOKEN   = '8785875286:AAFx1vAFRe2rGt4HEcb6fQlhQlVESrVZT7Q'
-    const CHAT_ID = '413912803'
 
     const taskLabel = {
       site: 'Сайт', ads: 'Реклама', auto: 'Автоматизация',
@@ -67,27 +68,27 @@ export default function Contact() {
       '150k': '50 000 – 150 000 ₽', '150k+': 'от 150 000 ₽',
     }
 
-    const text = [
-      '🔔 *Новая заявка с сайта КОРМ*',
-      '',
-      `👤 *Имя:* ${form.name.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&')}`,
-      `📱 *Контакт:* ${form.contact.replace(/[_*[\]()~`>#+=|{}.!-]/g, '\\$&')}`,
-      `🎯 *Задача:* ${taskLabel[form.task] || '—'}`,
-      `💰 *Бюджет:* ${budgetLabel[form.budget] || '—'}`,
-      `💬 *Сообщение:* ${form.message || '—'}`,
-    ].join('\n')
-
     try {
-      const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      const res = await fetch('/api/send.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'Markdown' }),
+        body: JSON.stringify({
+          source: 'main',
+          fields: {
+            name: form.name,
+            contact: form.contact,
+            task: taskLabel[form.task] || '—',
+            budget: budgetLabel[form.budget] || '—',
+            message: form.message || '—',
+          },
+        }),
       })
-      if (!res.ok) throw new Error('Сервер недоступен')
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Сервер недоступен')
       setSent(true)
     } catch (err) {
-      console.error('Telegram error:', err)
-      setError('Ошибка отправки. Напишите напрямую в Telegram: @korm_marketing')
+      if (import.meta.env.DEV) console.error('Send error:', err)
+      setError(err.message || 'Ошибка отправки. Напишите напрямую в Telegram: @korm_marketing')
     } finally {
       setBusy(false)
     }
@@ -176,6 +177,14 @@ export default function Contact() {
               onSubmit={handleSubmit}
               style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}
             >
+              {/* Honeypot — невидим для людей, ловит ботов */}
+              <input
+                type="text" name="website" tabIndex="-1" autoComplete="off"
+                value={form.website} onChange={handleChange}
+                style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+                aria-hidden="true"
+              />
+
               {/* Row 1: name + contact */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}
                 className="contact-row">
@@ -280,16 +289,29 @@ export default function Contact() {
                   {error}
                 </p>
               )}
-              <p style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '12px', color: '#4A4A4A',
-                textAlign: 'center', marginTop: '12px',
+              <label style={{
+                display: 'flex', alignItems: 'flex-start', gap: '10px',
+                marginTop: '8px', cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif', fontSize: '13px',
+                color: '#A0A0A0', lineHeight: 1.5,
               }}>
-                Нажимая кнопку, вы соглашаетесь с{' '}
-                <a href="/privacy" style={{ color: '#6366F1', textDecoration: 'none' }}>
-                  политикой конфиденциальности
-                </a>
-              </p>
+                <input
+                  type="checkbox"
+                  checked={agree}
+                  onChange={(e) => setAgree(e.target.checked)}
+                  style={{
+                    width: '18px', height: '18px',
+                    accentColor: '#6366F1',
+                    flexShrink: 0, marginTop: '2px', cursor: 'pointer',
+                  }}
+                />
+                <span>
+                  Я соглашаюсь с{' '}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: '#6366F1', textDecoration: 'none' }}>
+                    политикой конфиденциальности
+                  </a>{' '}и обработкой моих персональных данных, включая трансграничную передачу в Telegram.
+                </span>
+              </label>
             </motion.form>
           )}
         </AnimatePresence>
