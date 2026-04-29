@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Privacy from './components/Privacy/Privacy'
 import DentalPromo from './components/Dental/DentalPromo'
+import FurniturePromo from './components/Furniture/FurniturePromo'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -26,6 +27,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function App() {
   if (window.location.pathname === '/privacy') return <Privacy />
   if (window.location.pathname === '/dental-promo2026') return <DentalPromo />
+  if (window.location.pathname === '/furniture-promo2026') return <FurniturePromo />
 
   const [loading, setLoading] = useState(true)
 
