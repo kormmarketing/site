@@ -3,6 +3,7 @@ import Privacy from './components/Privacy/Privacy'
 import DentalPromo from './components/Dental/DentalPromo'
 import FurniturePromo from './components/Furniture/FurniturePromo'
 import Promo from './components/Promo/Promo'
+import NotFound from './components/NotFound/NotFound'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -25,11 +26,16 @@ import Footer   from './components/Footer/Footer'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Известные роуты — всё остальное → 404
+const KNOWN_ROUTES = ['/', '/privacy', '/dental-promo2026', '/furniture-promo2026', '/promo2026']
+
 export default function App() {
-  if (window.location.pathname === '/privacy') return <Privacy />
-  if (window.location.pathname === '/dental-promo2026') return <DentalPromo />
-  if (window.location.pathname === '/furniture-promo2026') return <FurniturePromo />
-  if (window.location.pathname === '/promo2026') return <Promo />
+  const path = window.location.pathname
+  if (path === '/privacy') return <Privacy />
+  if (path === '/dental-promo2026') return <DentalPromo />
+  if (path === '/furniture-promo2026') return <FurniturePromo />
+  if (path === '/promo2026') return <Promo />
+  if (!KNOWN_ROUTES.includes(path)) return <NotFound />
 
   const [loading, setLoading] = useState(true)
 
